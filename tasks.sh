@@ -27,6 +27,21 @@ check_sbcl () {
 	fi
 }
 
+install_quicklisp () {
+        echo "Installing quicklisp"
+	mkdir ~/tmp
+	cd ~/tmp
+	curl -O http://beta.quicklisp.org/quicklisp.lisp
+	sbcl --load quicklisp.lisp <<EOF
+(quicklisp-quickstart:install)
+(ql:quickload "quicklisp-slime-helper")
+(ql:add-to-init-file)
+EOF
+	cd ..
+	rm -rf ~/tmp
+	echo "Done installing quicklisp. Good Job."
+}
+
 uninstall () {
 	echo "Uninstalling toroidal-code/newcastle..."
 	rm -rf ~/.homesick
@@ -97,11 +112,13 @@ update_vim_plugins () {
 install () {
 	echo "Installing toroidal-code/newcastle..."
 	check_wget
+	check_sbcl
 	install_homeshick
 	clone
 	use_zsh
 	symlink
 	set_up_repos_directory
+	install_quicklisp
 	install_vundle
 	install_vim_plugins
 	echo "Open a new terminal to start your proper shell."

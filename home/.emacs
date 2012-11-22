@@ -26,21 +26,6 @@
 (global-auto-complete-mode t)
 (auto-complete-mode t)
 
-
-(setq inferior-lisp-program "/usr/bin/clisp")
-(add-to-list 'load-path "~/.emacs.d/plugins/slime/")  ; your SLIME directory
-;;(setq slime-lisp-implementations
-;;      '((sbcl ("sbcl" "--core" "sbcl.core-for-slime"))))
-(require 'slime-autoloads)
-(slime-setup)
-
-;;(require 'package)
-;;(add-to-list 'package-archives 
-;;	     '("marmalade" .
-;;	       "http://marmalade-repo.org/packages/"))
-;;(package-initialize)
-
-
 (require 'color-theme)
 (load-file "~/.emacs.d/plugins/color-theme-molokai.el")
 (color-theme-molokai)
