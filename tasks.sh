@@ -42,6 +42,25 @@ EOF
 	echo "Done installing quicklisp. Good Job."
 }
 
+install el-get (){
+	echo "Installing el-get"
+	wget https://raw.github.com/toroidal-code/newcastle/master/install.el
+	emacs -nw --load ./install.el
+	killall emacs
+	echo "(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+    (let (el-get-master-branch)
+      (goto-char (point-max))
+      (eval-print-last-sexp))))
+
+(el-get 'sync)" > ~/.emacs
+	echo "Done installing El-Get"
+}
+
 uninstall () {
 	echo "Uninstalling toroidal-code/newcastle..."
 	rm -rf ~/.homesick
@@ -119,6 +138,7 @@ install () {
 	symlink
 	set_up_repos_directory
 	install_quicklisp
+	install_elget
 	install_vundle
 	install_vim_plugins
 	echo "Open a new terminal to start your proper shell."
