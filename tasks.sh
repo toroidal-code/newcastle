@@ -42,7 +42,7 @@ EOF
 	echo "Done installing quicklisp. Good Job."
 }
 
-install el-get (){
+install_elget () {
 	echo "Installing el-get"
 	wget https://raw.github.com/toroidal-code/newcastle/master/install.el
 	emacs -nw --load ./install.el
