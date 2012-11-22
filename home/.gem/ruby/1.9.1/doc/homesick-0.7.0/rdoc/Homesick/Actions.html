@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=US-ASCII" http-equiv="Content-Type" />
+
+  <title>Module: Homesick::Actions</title>
+
+  <link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
+
+  <script src="../js/jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../js/darkfish.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body id="top" class="module">
+
+  <div id="metadata">
+    <div id="home-metadata">
+      <div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="../index.html">Home</a>
+          <a href="../index.html#classes">Classes</a>
+          <a href="../index.html#methods">Methods</a>
+        </h3>
+      </div>
+    </div>
+
+    <div id="file-metadata">
+      <div id="file-list-section" class="section">
+        <h3 class="section-header">In Files</h3>
+        <div class="section-body">
+          <ul>
+          
+            <li><a href="../lib/homesick/actions_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/homesick/actions.rb">lib/homesick/actions.rb</a></li>
+          
+          </ul>
+        </div>
+      </div>
+
+      
+    </div>
+
+    <div id="class-metadata">
+      
+
+      
+
+      
+
+      
+      <!-- Method Quickref -->
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
+          
+          <li><a href="#method-i-git_clone">#git_clone</a></li>
+          
+          <li><a href="#method-i-git_init">#git_init</a></li>
+          
+          <li><a href="#method-i-git_pull">#git_pull</a></li>
+          
+          <li><a href="#method-i-git_remote_add">#git_remote_add</a></li>
+          
+          <li><a href="#method-i-git_submodule_init">#git_submodule_init</a></li>
+          
+          <li><a href="#method-i-git_submodule_update">#git_submodule_update</a></li>
+          
+          <li><a href="#method-i-ln_s">#ln_s</a></li>
+          
+          <li><a href="#method-i-mv">#mv</a></li>
+          
+        </ul>
+      </div>
+      
+
+      
+    </div>
+
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Files</h3>
+        <ul>
+        
+          <li class="file"><a href="../LICENSE.html">LICENSE</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class/Module Index
+          <span class="search-toggle"><img src="../images/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <ul class="link-list">
+        
+          <li><a href="../Homesick.html">Homesick</a></li>
+        
+          <li><a href="../Homesick/Actions.html">Homesick::Actions</a></li>
+        
+          <li><a href="../Homesick/Shell.html">Homesick::Shell</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+
+      
+    </div>
+  </div>
+
+  <div id="documentation">
+    <h1 class="module">Homesick::Actions</h1>
+
+    <div id="description" class="description">
+      
+    </div><!-- description -->
+
+    
+    
+    
+    <div id="5Buntitled-5D" class="documentation-section">
+      
+
+      
+
+      
+
+      
+
+      <!-- Methods -->
+      
+      <div id="public-instance-method-details" class="method-section section">
+        <h3 class="section-header">Public Instance Methods</h3>
+
+      
+        <div id="git_clone-method" class="method-detail ">
+          <a name="method-i-git_clone"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">git_clone</span><span
+              class="method-args">(repo, config = {})</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>TODO move this to be more like thor's template, empty_directory, etc</p>
+            
+
+            
+            <div class="method-source-code" id="git_clone-source">
+<pre>
+<span class="ruby-comment"># File lib/homesick/actions.rb, line 4</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">git_clone</span>(<span class="ruby-identifier">repo</span>, <span class="ruby-identifier">config</span> = {})
+  <span class="ruby-identifier">config</span> <span class="ruby-operator">||=</span> {}
+  <span class="ruby-identifier">destination</span> = <span class="ruby-identifier">config</span>[<span class="ruby-value">:destination</span>] <span class="ruby-operator">||</span> <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">repo</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/([^\/]+)\.git$/</span>
+   <span class="ruby-node">$1</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">destination</span> = <span class="ruby-constant">Pathname</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">destination</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">destination</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Pathname</span>)
+  <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">mkdir_p</span> <span class="ruby-identifier">destination</span>.<span class="ruby-identifier">dirname</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span> <span class="ruby-identifier">destination</span>.<span class="ruby-identifier">directory?</span>
+    <span class="ruby-identifier">say_status</span> <span class="ruby-string">'git clone'</span>, <span class="ruby-node">&quot;#{repo} to #{destination.expand_path}&quot;</span>, <span class="ruby-value">:green</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:quiet</span>]
+    <span class="ruby-identifier">system</span> <span class="ruby-node">&quot;git clone -q #{repo} #{destination}&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:pretend</span>]
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">say_status</span> <span class="ruby-value">:exist</span>, <span class="ruby-identifier">destination</span>.<span class="ruby-identifier">expand_path</span>, <span class="ruby-value">:blue</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:quiet</span>]
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- git_clone-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- git_clone-method -->
+
+      
+        <div id="git_init-method" class="method-detail ">
+          <a name="method-i-git_init"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">git_init</span><span
+              class="method-args">(path = ".")</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="git_init-source">
+<pre>
+<span class="ruby-comment"># File lib/homesick/actions.rb, line 22</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">git_init</span>(<span class="ruby-identifier">path</span> = <span class="ruby-string">&quot;.&quot;</span>)
+  <span class="ruby-identifier">path</span> = <span class="ruby-constant">Pathname</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">path</span>)
+
+  <span class="ruby-identifier">inside</span> <span class="ruby-identifier">path</span> <span class="ruby-keyword">do</span>
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">path</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">'.git'</span>).<span class="ruby-identifier">exist?</span>
+      <span class="ruby-identifier">say_status</span> <span class="ruby-string">'git init'</span>, <span class="ruby-string">''</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:quiet</span>]
+      <span class="ruby-identifier">system</span> <span class="ruby-string">&quot;git init &gt;/dev/null&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:pretend</span>]
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">say_status</span> <span class="ruby-string">'git init'</span>, <span class="ruby-string">'already initialized'</span>, <span class="ruby-value">:blue</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:quiet</span>]
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- git_init-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- git_init-method -->
+
+      
+        <div id="git_pull-method" class="method-detail ">
+          <a name="method-i-git_pull"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">git_pull</span><span
+              class="method-args">(config = {})</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="git_pull-source">
+<pre>
+<span class="ruby-comment"># File lib/homesick/actions.rb, line 57</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">git_pull</span>(<span class="ruby-identifier">config</span> = {})
+  <span class="ruby-identifier">say_status</span> <span class="ruby-string">'git pull'</span>, <span class="ruby-string">''</span>, <span class="ruby-value">:green</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:quiet</span>]
+  <span class="ruby-identifier">system</span> <span class="ruby-string">&quot;git pull --quiet&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:pretend</span>]
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- git_pull-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- git_pull-method -->
+
+      
+        <div id="git_remote_add-method" class="method-detail ">
+          <a name="method-i-git_remote_add"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">git_remote_add</span><span
+              class="method-args">(name, url)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="git_remote_add-source">
+<pre>
+<span class="ruby-comment"># File lib/homesick/actions.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">git_remote_add</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">url</span>)
+  <span class="ruby-identifier">existing_remote</span> = <span class="ruby-node">`git config remote.#{name}.url`</span>.<span class="ruby-identifier">chomp</span>
+  <span class="ruby-identifier">existing_remote</span> = <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">existing_remote</span> <span class="ruby-operator">==</span> <span class="ruby-string">''</span>
+
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">existing_remote</span>
+    <span class="ruby-identifier">say_status</span> <span class="ruby-string">'git remote'</span>, <span class="ruby-node">&quot;add #{name} #{url}&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:quiet</span>]
+    <span class="ruby-identifier">system</span> <span class="ruby-node">&quot;git remote add #{name} #{url}&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:pretend</span>]
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">say_status</span> <span class="ruby-string">'git remote'</span>, <span class="ruby-node">&quot;#{name} already exists&quot;</span>, <span class="ruby-value">:blue</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:quiet</span>]
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- git_remote_add-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- git_remote_add-method -->
+
+      
+        <div id="git_submodule_init-method" class="method-detail ">
+          <a name="method-i-git_submodule_init"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">git_submodule_init</span><span
+              class="method-args">(config = {})</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="git_submodule_init-source">
+<pre>
+<span class="ruby-comment"># File lib/homesick/actions.rb, line 47</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">git_submodule_init</span>(<span class="ruby-identifier">config</span> = {})
+  <span class="ruby-identifier">say_status</span> <span class="ruby-string">'git submodule'</span>, <span class="ruby-string">'init'</span>, <span class="ruby-value">:green</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:quiet</span>]
+  <span class="ruby-identifier">system</span> <span class="ruby-string">&quot;git submodule --quiet init&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:pretend</span>]
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- git_submodule_init-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- git_submodule_init-method -->
+
+      
+        <div id="git_submodule_update-method" class="method-detail ">
+          <a name="method-i-git_submodule_update"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">git_submodule_update</span><span
+              class="method-args">(config = {})</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="git_submodule_update-source">
+<pre>
+<span class="ruby-comment"># File lib/homesick/actions.rb, line 52</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">git_submodule_update</span>(<span class="ruby-identifier">config</span> = {})
+  <span class="ruby-identifier">say_status</span> <span class="ruby-string">'git submodule'</span>, <span class="ruby-string">'update'</span>, <span class="ruby-value">:green</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:quiet</span>]
+  <span class="ruby-identifier">system</span> <span class="ruby-string">&quot;git submodule --quiet update &gt;/dev/null 2&gt;&amp;1&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:pretend</span>]
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- git_submodule_update-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- git_submodule_update-method -->
+
+      
+        <div id="ln_s-method" class="method-detail ">
+          <a name="method-i-ln_s"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">ln_s</span><span
+              class="method-args">(source, destination, config = {})</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="ln_s-source">
+<pre>
+<span class="ruby-comment"># File lib/homesick/actions.rb, line 78</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">ln_s</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">destination</span>, <span class="ruby-identifier">config</span> = {})
+  <span class="ruby-identifier">source</span> = <span class="ruby-constant">Pathname</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">source</span>)
+  <span class="ruby-identifier">destination</span> = <span class="ruby-constant">Pathname</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">destination</span>)
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">destination</span>.<span class="ruby-identifier">symlink?</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">destination</span>.<span class="ruby-identifier">readlink</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">source</span>
+      <span class="ruby-identifier">say_status</span> <span class="ruby-value">:identical</span>, <span class="ruby-identifier">destination</span>.<span class="ruby-identifier">expand_path</span>, <span class="ruby-value">:blue</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:quiet</span>]
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">say_status</span> <span class="ruby-value">:conflict</span>, <span class="ruby-node">&quot;#{destination} exists and points to #{destination.readlink}&quot;</span>, <span class="ruby-value">:red</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:quiet</span>]
+
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:force</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">shell</span>.<span class="ruby-identifier">file_collision</span>(<span class="ruby-identifier">destination</span>) { <span class="ruby-identifier">source</span> }
+        <span class="ruby-identifier">system</span> <span class="ruby-node">&quot;ln -sf #{source} #{destination}&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:pretend</span>]
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">destination</span>.<span class="ruby-identifier">exist?</span>
+    <span class="ruby-identifier">say_status</span> <span class="ruby-value">:conflict</span>, <span class="ruby-node">&quot;#{destination} exists&quot;</span>, <span class="ruby-value">:red</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:quiet</span>]
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:force</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">shell</span>.<span class="ruby-identifier">file_collision</span>(<span class="ruby-identifier">destination</span>) { <span class="ruby-identifier">source</span> }
+      <span class="ruby-identifier">system</span> <span class="ruby-node">&quot;ln -sf #{source} #{destination}&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:pretend</span>]
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">say_status</span> <span class="ruby-value">:symlink</span>, <span class="ruby-node">&quot;#{source.expand_path} to #{destination.expand_path}&quot;</span>, <span class="ruby-value">:green</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:quiet</span>]
+    <span class="ruby-identifier">system</span> <span class="ruby-node">&quot;ln -s #{source} #{destination}&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:pretend</span>]
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- ln_s-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- ln_s-method -->
+
+      
+        <div id="mv-method" class="method-detail ">
+          <a name="method-i-mv"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">mv</span><span
+              class="method-args">(source, destination, config = {})</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="mv-source">
+<pre>
+<span class="ruby-comment"># File lib/homesick/actions.rb, line 62</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">mv</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">destination</span>, <span class="ruby-identifier">config</span> = {})
+  <span class="ruby-identifier">source</span> = <span class="ruby-constant">Pathname</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">source</span>)
+  <span class="ruby-identifier">destination</span> = <span class="ruby-constant">Pathname</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">destination</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">source</span>.<span class="ruby-identifier">basename</span>)
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">destination</span>.<span class="ruby-identifier">exist?</span>
+    <span class="ruby-identifier">say_status</span> <span class="ruby-value">:conflict</span>, <span class="ruby-node">&quot;#{destination} exists&quot;</span>, <span class="ruby-value">:red</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:quiet</span>]
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:force</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">shell</span>.<span class="ruby-identifier">file_collision</span>(<span class="ruby-identifier">destination</span>) { <span class="ruby-identifier">source</span> }
+      <span class="ruby-identifier">system</span> <span class="ruby-node">&quot;mv #{source} #{destination}&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:pretend</span>]
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-comment"># this needs some sort of message here.</span>
+    <span class="ruby-identifier">system</span> <span class="ruby-node">&quot;mv #{source} #{destination}&quot;</span> <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:pretend</span>]
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- mv-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- mv-method -->
+
+      
+      </div><!-- public-instance-method-details -->
+    
+    </div><!-- 5Buntitled-5D -->
+  
+
+  </div><!-- documentation -->
+
+  <div id="validator-badges">
+    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+      Rdoc Generator</a> 2</small>.</p>
+  </div>
+
+</body>
+</html>
+

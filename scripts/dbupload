@@ -1,0 +1,7 @@
+#!/bin/bash
+# Moves a file into your Dropbox/Public folder and gives you a link to it.
+
+public_folder=$HOME/Dropbox/Public
+
+mv $1 $public_folder
+dropbox puburl $public_folder/$1
