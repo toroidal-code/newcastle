@@ -1,4 +1,4 @@
-#!/bin/bash
+0;95;c#!/bin/bash
 
 # Simple Rakefile-esque task runner.
 # Call it like this:
