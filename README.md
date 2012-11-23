@@ -9,7 +9,4 @@ install script installs homeshick for you, so you won't need to worry about
 that.
 
 ## Installation
-`wget -qO- https://raw.github.com/toroidal-code/castle/master/bootstrap.sh | bash`
-
-## Older config files
-- [My old fork of Cody Krieger's vim config files](https://github.com/thenickperson/dotvim-old)
+`wget -qO- https://raw.github.com/toroidal-code/newcastle/master/bootstrap.sh | bash`
