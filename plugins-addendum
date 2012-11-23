@@ -1,21 +1,9 @@
 
-(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
-
-(unless (require 'el-get nil 'noerror)
-  (with-current-buffer
-      (url-retrieve-synchronously
-       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
-    (let (el-get-master-branch)
-      (goto-char (point-max))
-      (eval-print-last-sexp))))
-
-(el-get 'sync)
-
-(require 'color-theme)
+;;The Molokai color theme
 (load-file "~/.emacs.d/plugins/color-theme-molokai.el")
 (color-theme-molokai)
 
-
+;;Setup Paredit
 (autoload 'paredit-mode "paredit"
   "Minor mode for pseudo-structurally editing Lisp code." t)
 (add-hook 'emacs-lisp-mode-hook       (lambda () (paredit-mode +1)))
@@ -23,6 +11,7 @@
 (add-hook 'lisp-interaction-mode-hook (lambda () (paredit-mode +1)))
 (add-hook 'scheme-mode-hook           (lambda () (paredit-mode +1)))
 (add-hook 'clojure-mode-hook          (lambda () (paredit-mode +1)))
+(add-hook 'slime-repl-mode-hook       (lambda () (paredit-mode +1)))
 
 ;; Stop SLIME's REPL from grabbing DEL,
 ;; which is annoying when backspacing over a '('
@@ -49,6 +38,7 @@
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
   (setq ac-comphist-file  "~/.emacs.d/ac-comphist.dat")
   (ac-config-default))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -39,16 +39,29 @@ install_quicklisp () {
 EOF
 	cd ..
 	rm -rf ~/tmp
-	echo "Done installing quicklisp. Good Job."
+	echo "Done installing quicklisp"
 }
 
 install_elget () {
 	echo "Installing el-get"
-	wget https://raw.github.com/toroidal-code/newcastle/master/install.el
-	emacs -nw --load ./install.el
-	wget https://raw.github.com/toroidal-code/newcastle/master/emacs-addon
-	cat emacs-addon  >> ~/.emacs
+	wget https://raw.github.com/toroidal-code/newcastle/master/elget.el
+	emacs -nw --load ./elget.el
+	rm elget.el
+	wget https://raw.github.com/toroidal-code/newcastle/master/elget-addendum
+	cat elget-addendum  >> ~/.emacs
+	rm elget-addendum
 	echo "Done installing El-Get"
+}
+
+install_emacsplugins () {
+        echo "Installing emacs plugins"
+	wget https://raw.github.com/toroidal-code/newcastle/master/plugins.el
+	emacs -nw --load ./plugins.el --batch
+	rm plugins.el
+	wget https://raw.github.com/toroidal-code/newcastle/master/plugins-addendum
+	cat plugins-addendum >> ~/.emacs
+	rm plugins-addendum
+	echo "Done installing emacs plugins"
 }
 
 uninstall () {
