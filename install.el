@@ -6,3 +6,5 @@
    (let (el-get-master-branch)
      (goto-char (point-max))
      (eval-print-last-sexp))))
+
+(el-get-install color-theme)
