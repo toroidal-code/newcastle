@@ -44,7 +44,7 @@ EOF
 
 install_elget () {
 	echo "Installing el-get"
-	wget https://raw.github.com/toroidal-code/newcastle/master/elget.el
+	curl -O https://raw.github.com/toroidal-code/newcastle/master/elget.el
 	emacs -nw --load "./elget.el"
 	rm ./elget.el
 	echo "Done installing El-Get"
@@ -52,7 +52,7 @@ install_elget () {
 
 install_emacs_plugins () {
         echo "Installing emacs plugins"
-	wget https://raw.github.com/toroidal-code/newcastle/master/plugins.el
+	curl -O https://raw.github.com/toroidal-code/newcastle/master/plugins.el
 	emacs -nw --batch --insert=plugins.el -f "eval-current-buffer"
 	rm plugins.el
 	echo "Done installing emacs plugins"
@@ -97,7 +97,7 @@ clean () {
 
 install_homeshick () {
 	echo "Installing homeshick..."
-	wget -qO- https://raw.github.com/andsens/homeshick/master/install.sh | bash
+        curl https://raw.github.com/andsens/homeshick/master/install.sh | bash
 }
 
 use_zsh () {
