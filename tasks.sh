@@ -46,7 +46,6 @@ install_elget () {
 	echo "Installing el-get"
 	wget https://raw.github.com/toroidal-code/newcastle/master/install.el
 	emacs -nw --load ./install.el
-	killall emacs
 	echo "(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
 (unless (require 'el-get nil 'noerror)
@@ -57,7 +56,7 @@ install_elget () {
       (goto-char (point-max))
       (eval-print-last-sexp))))
 
-(el-get 'sync)" > ~/.emacs
+(el-get 'sync)" >> ~/.emacs
 	echo "Done installing El-Get"
 }
 
