@@ -45,22 +45,18 @@ EOF
 install_elget () {
 	echo "Installing el-get"
 	wget https://raw.github.com/toroidal-code/newcastle/master/elget.el
-	emacs -nw --load ./elget.el
-	rm elget.el
-	wget https://raw.github.com/toroidal-code/newcastle/master/elget-addendum
-	cat elget-addendum  >> ~/.emacs
-	rm elget-addendum
+	emacs -nw --load "./elget.el"
+	rm ./elget.el
+	curl https://raw.github.com/toroidal-code/newcastle/master/elget-addendum >> ~/.emacs
 	echo "Done installing El-Get"
 }
 
 install_emacsplugins () {
         echo "Installing emacs plugins"
 	wget https://raw.github.com/toroidal-code/newcastle/master/plugins.el
-	emacs -nw --load ./plugins.el --batch
+	emacs -nw --batch --insert=plugins.el -f "eval-current-buffer"
 	rm plugins.el
-	wget https://raw.github.com/toroidal-code/newcastle/master/plugins-addendum
-	cat plugins-addendum >> ~/.emacs
-	rm plugins-addendum
+	curl https://raw.github.com/toroidal-code/newcastle/master/plugins-addendum >> ~/.emacs
 	echo "Done installing emacs plugins"
 }
 
@@ -137,13 +133,14 @@ install () {
 	check_sbcl
 	install_homeshick
 	clone
-	use_zsh
+#	use_zsh
 	symlink
 	set_up_repos_directory
 	install_quicklisp
 	install_elget
-	install_vundle
-	install_vim_plugins
+	install_emacsplugins
+#	install_vundle
+#	install_vim_plugins
 	echo "Open a new terminal to start your proper shell."
 }
 
