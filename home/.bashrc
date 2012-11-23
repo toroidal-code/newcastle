@@ -10,7 +10,7 @@ PS1="\[\e[32m\]\u:\w\$\[\e[m\] " # old config from crunchbang
 #PS1="\u@\h:\w$ " # default from crunchbang
 
 # variables
-export EDITOR="vim"
+export EDITOR="emacs"
 
 # bash aliases
 if [ -f ~/.aliases ]; then

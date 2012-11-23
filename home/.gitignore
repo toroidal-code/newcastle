@@ -1,6 +1,7 @@
 # Ignore Linux things
 !.gitignore
 *~
+*.*~
 
 # Ignore tags (from etags and ctags)
 TAGS
@@ -13,3 +14,7 @@ tags
 *.un~
 Session.vim
 .netrwhist
+
+# Ignore Emacs things
+\#*\#
+

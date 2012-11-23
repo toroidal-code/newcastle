@@ -16,8 +16,7 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'tpope/vim-rails'
 
 " Color Schemes
-Bundle 'chriskempson/vim-tomorrow-theme'
-Bundle 'altercation/vim-colors-solarized'
+Bundle 'tomasr/molokai'
 
 " Language/Syntax Support
 Bundle 'jQuery'
