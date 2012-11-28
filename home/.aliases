@@ -1,8 +1,6 @@
 #!/bin/bash
 #alias NICKNAME='COMMAND'
 
-
-
 # color support
 export CLICOLOR=1
 alias ls='ls -GpF'
@@ -27,7 +25,6 @@ alias dbp='dropbox puburl'
 alias ns='notify-send'
 alias nsc='notify-send "Process Completed"'
 alias h='history'
-alias open='xdg-open'
 alias lns='ln -s'
 alias ..='cd ..'
 alias dua='\du -ha'
@@ -147,25 +144,44 @@ alias lm='la | less'
 alias lsp="ls++"
 alias lap="ls++ -A"
 
-# systemd
-alias sc="systemctl"
-alias power-reboot='sudo systemctl reboot'
-alias power-off='sudo systemctl poweroff'
-alias start='sudo systemctl start'
-alias restart='sudo systemctl restart'
-alias stop='sudo systemctl stop'
-alias enable='sudo systemctl enable'
-alias status='sudo systemctl status'
-alias disable='sudo systemctl disable'
+if command -v systemctl &>/dev/null; then
+	# systemd
+	alias sc="systemctl"
+	alias power-reboot='sudo systemctl reboot'
+	alias power-off='sudo systemctl poweroff'
+	alias start='sudo systemctl start'
+	alias restart='sudo systemctl restart'
+	alias stop='sudo systemctl stop'
+	alias enable='sudo systemctl enable'
+	alias status='sudo systemctl status'
+	alias disable='sudo systemctl disable'
+fi
 
-# pacman/packer
-alias pf='yaourt -Ss'
-alias p='sudo pacman-color'
-alias pin='p -S'
-alias pup='p -Syu'
-alias pa='yaourt'
-alias pain='pa -S'
-alias paup='pa -Syu'
+if command -v pacman-color &>/dev/null; then
+	# pacman/yaourt
+	alias pf='yaourt -Ss'
+	alias p='sudo pacman-color'
+	alias pin='p -S'
+	alias pup='p -Syu'
+	alias pa='yaourt'
+	alias pain='pa -S'
+	alias paup='pa -Syu'
+else 
+	# pacman/yaourt
+	alias pf='yaourt -Ss'
+	alias p='sudo pacman'
+	alias pin='p -S'
+	alias pup='p -Syu'
+	alias pa='yaourt'
+	alias pain='pa -S'
+	alias paup='pa -Syu'
+fi
+
+if command -v brew &>/dev/null; then
+	# homebrew
+	alias bin="brew install"
+	alias bup="brew update && brew upgrade"
+fi
 
 # global aliases
 alias -g L='| less'
