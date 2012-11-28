@@ -143,12 +143,6 @@ map ; :
 " typing ;; quickly exits insert mode
 imap ;; <Esc>
 
-" bubble individual lines
-nmap <Up>   [e
-nmap <Down> ]e
-" bubble multiple lines
-vmap <Up>   [egv
-vmap <Down> ]egv
 
 " indent individual lines
 nmap <Left>   <<
@@ -184,9 +178,6 @@ map <Leader>h :set list!<CR>
 
 " run/compile file (see custom commands section)
 map <Leader>r :make<CR>
-
-" swap background color (dark/light) for Solarized
-call togglebg#map("<F2>")
 
 " Format the current paragraph according to
 " the current 'textwidth' with ctrl-j:

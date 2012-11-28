@@ -9,4 +9,4 @@ install script installs homeshick for you, so you won't need to worry about
 that.
 
 ## Installation
-`wget -qO- https://raw.github.com/toroidal-code/newcastle/master/bootstrap.sh | bash`
+`curl https://raw.github.com/toroidal-code/newcastle/master/bootstrap.sh | bash`
