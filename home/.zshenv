@@ -11,13 +11,6 @@ fi
 # Load additional software
 # Heroku
 export PATH=$PATH:/usr/local/heroku/bin
-# RubyGems
-export PATH=$PATH:~/.gem/ruby/1.9.1/bin
-# rbenv
-#export PATH=$PATH:~/.rbenv/bin
-export PATH=$PATH:/home/kate/.gem/ruby/1.9.1/bin 
-#eval "$(rbenv init -)"
 
 # Other variables
-export EDITOR=vim
-export BROWSER=chromium
+export EDITOR=emacs
