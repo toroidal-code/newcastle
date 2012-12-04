@@ -4,8 +4,7 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Completions
-autoload -U compinit
-compinit -C
+autoload -U compinit; compinit
 
 # Arrow key menu for completions
 zstyle ':completion:*' menu select

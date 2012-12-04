@@ -70,6 +70,24 @@ install_rvm (){
         curl -L https://get.rvm.io | bash -s stable --ruby
 }
 
+install_autojump (){
+        mkdir ~/.repos
+	cd ~/.repos
+	git clone git://github.com/joelthelion/autojump.git
+	cd autojump
+	./install.sh -l -a
+	cd ~
+}
+
+install_prezto (){
+	git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+	setopt EXTENDED_GLOB
+	for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+		  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+	done
+
+}
+
 uninstall () {
 	echo "Uninstalling toroidal-code/newcastle..."
 	rm -rf ~/.homesick
@@ -157,11 +175,12 @@ install () {
 	set_up_repos_directory
 	install_quicklisp
 #	install_elget
-#	install_emacs_plugins
+	install_emacs_plugins
 	install_vundle
 	install_vim_plugins
 	install_nvm
 	install_rvm
+	install_autojump
 	echo "Open a new terminal to start your proper shell."
 }
 
