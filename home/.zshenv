@@ -1,10 +1,7 @@
 #!/bin/zsh
 
-if command -v brew &>/dev/null; then
-        # homebrew
-        export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-fi
-
+# homebrew
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
 # Load OS scripts/software
 source /etc/profile
