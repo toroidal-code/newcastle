@@ -53,10 +53,8 @@ set diffopt+=iwhite
 
 " Powerline
 set laststatus=2
-set t_Co=256
-let g:Powerline_symbols='unicode'
-let g:Powerline_theme='solarized256'
-let g:Powerline_colorscheme='solarized256'
+"set t_Co=256
+"let g:Powerline_symbols='unicode'
 
 " remember last cursor position
 autocmd BufReadPost *
