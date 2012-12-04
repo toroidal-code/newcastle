@@ -67,17 +67,17 @@ uninstall () {
 
 clone () {
 	echo "Cloning repository..."
-	$HOME/.homeshick clone https://github.com/toroidal-code/newcastle.git
+	$HOMESICK clone https://github.com/toroidal-code/newcastle.git
 }
 
 pull () {
 	echo "Pulling repository..."
-	$HOME/.homeshick pull newcastle
+	$HOMESICK pull newcastle
 }
 
 symlink () {
 	echo "Symlinking config files..."
-	$HOME/.homeshick symlink newcastle
+	$HOMESICK symlink newcastle
 }
 
 set_up_repos_directory () {
@@ -125,11 +125,20 @@ update_vim_plugins () {
 	vim +BundleInstall! +qall
 }
 
+check_homesick() {
+        if ! command -v homesick > /dev/null; then
+	    export HOMESICK=homesick
+	else
+	    export HOMESICK=$HOME/.homeshick
+	    install_homeshick
+	fi
+}
+
 install () {
 	echo "Installing toroidal-code/newcastle..."
 	check_wget
 	check_sbcl
-	install_homeshick
+	check_homesick
 	clone
 	use_zsh
 	symlink
