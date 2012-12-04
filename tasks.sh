@@ -58,6 +58,36 @@ install_emacs_plugins () {
 	echo "Done installing emacs plugins"
 }
 
+install_nvm () {
+	git clone git://github.com/creationix/nvm.git ~/.nvm
+	echo ". ~/.nvm/nvm.sh" >> ~/.zshrc
+	source ~/.nvm/nvm.sh
+	nvm install 0.8
+	nvm alias default 0.8
+}
+
+install_rvm (){
+        curl -L https://get.rvm.io | bash -s stable --ruby
+}
+
+install_autojump (){
+        mkdir ~/.repos
+	cd ~/.repos
+	git clone git://github.com/joelthelion/autojump.git
+	cd autojump
+	./install.sh -l -a
+	cd ~
+}
+
+install_prezto (){
+	git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+	setopt EXTENDED_GLOB
+	for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+		  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+	done
+
+}
+
 uninstall () {
 	echo "Uninstalling toroidal-code/newcastle..."
 	rm -rf ~/.homesick
@@ -67,17 +97,17 @@ uninstall () {
 
 clone () {
 	echo "Cloning repository..."
-	$HOME/.homeshick clone https://github.com/toroidal-code/newcastle.git
+	$HOMESICK clone https://github.com/toroidal-code/newcastle.git
 }
 
 pull () {
 	echo "Pulling repository..."
-	$HOME/.homeshick pull newcastle
+	$HOMESICK pull newcastle
 }
 
 symlink () {
 	echo "Symlinking config files..."
-	$HOME/.homeshick symlink newcastle
+	$HOMESICK symlink newcastle
 }
 
 set_up_repos_directory () {
@@ -125,20 +155,32 @@ update_vim_plugins () {
 	vim +BundleInstall! +qall
 }
 
+check_homesick() {
+        if ! command -v homesick > /dev/null; then
+	    export HOMESICK=homesick
+	else
+	    export HOMESICK=$HOME/.homeshick
+	    install_homeshick
+	fi
+}
+
 install () {
 	echo "Installing toroidal-code/newcastle..."
 	check_wget
 	check_sbcl
-	install_homeshick
+	check_homesick
 	clone
 	use_zsh
 	symlink
 	set_up_repos_directory
 	install_quicklisp
-	install_elget
+#	install_elget
 	install_emacs_plugins
 	install_vundle
 	install_vim_plugins
+	install_nvm
+	install_rvm
+	install_autojump
 	echo "Open a new terminal to start your proper shell."
 }
 

@@ -1,6 +1,10 @@
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+
 # Completions
-autoload -U compinit
-compinit -C
+autoload -U compinit; compinit
 
 # Arrow key menu for completions
 zstyle ':completion:*' menu select
@@ -90,4 +94,4 @@ autoload -U zmv
 #setopt correctall
 
 # Automatically use cd when paths are entered without cd
-setopt autocd
+#setopt autocd
