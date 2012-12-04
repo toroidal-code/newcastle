@@ -63,6 +63,7 @@ install_nvm () {
 	echo ". ~/.nvm/nvm.sh" >> ~/.zshrc
 	source ~/.nvm/nvm.sh
 	nvm install 0.8
+	nvm alias default 0.8
 }
 
 install_rvm (){
