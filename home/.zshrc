@@ -90,4 +90,4 @@ autoload -U zmv
 #setopt correctall
 
 # Automatically use cd when paths are entered without cd
-setopt autocd
+#setopt autocd
