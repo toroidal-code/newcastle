@@ -58,6 +58,17 @@ install_emacs_plugins () {
 	echo "Done installing emacs plugins"
 }
 
+install_nvm () {
+	git clone git://github.com/creationix/nvm.git ~/.nvm
+	echo ". ~/.nvm/nvm.sh" >> ~/.zshrc
+	source ~/.nvm/nvm.sh
+	nvm install 0.8
+}
+
+install_rvm (){
+        curl -L https://get.rvm.io | bash -s stable --ruby
+}
+
 uninstall () {
 	echo "Uninstalling toroidal-code/newcastle..."
 	rm -rf ~/.homesick
@@ -148,6 +159,8 @@ install () {
 	install_emacs_plugins
 	install_vundle
 	install_vim_plugins
+	install_nvm
+	install_rvm
 	echo "Open a new terminal to start your proper shell."
 }
 
