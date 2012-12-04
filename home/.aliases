@@ -71,11 +71,8 @@ fi
 # safety features
 alias cp='cp -i'
 alias mv='mv -i'
-alias rm='rm -I'
+alias rm='rm -i'
 alias ln='ln -i'
-alias chown='chown --preserve-root'
-alias chmod='chmod --preserve-root'
-alias chgrp='chgrp --preserve-root'
 
 # programming languages
 alias ja='java'
