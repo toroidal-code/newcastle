@@ -139,7 +139,7 @@ else
 fi
 
 # ls
-alias ls='ls -hGpF'
+alias ls='ls -hGp'
 alias la='ls -A'
 alias ll='ls -lh'
 alias l='ls -alh'
