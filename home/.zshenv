@@ -8,9 +8,5 @@ if [[ $EUID -ne 0 ]]; then
 	export PATH=$PATH:~/Bin:~/Repos/castle/scripts
 fi
 
-# Load additional software
-# Heroku
-export PATH=$PATH:/usr/local/heroku/bin
-
 # Other variables
 export EDITOR=emacs
