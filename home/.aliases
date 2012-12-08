@@ -4,16 +4,13 @@
 # color support
 if [[ "$OSTYPE" == darwin* ]]; then
     export CLICOLOR=1
-    alias ls='ls -GpF'
 else 
     export CLICOLOR=1
-    alias ls='ls --color=auto'
     alias dir='dir --color=auto'
     alias vdir='vdir --color=auto'
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
-    alias diff='colordiff' #requires colordiff package
 fi
 alias diff='colordiff' #requires colordiff package
     
@@ -139,7 +136,12 @@ else
 fi
 
 # ls
-alias ls='ls -hGp'
+if [[ "$OSTYPE" == darwin* ]]; then
+    export CLICOLOR=1
+    alias ls='ls -GpF'
+else 
+    alias ls='ls -hGp --color=auto'
+fi
 alias la='ls -A'
 alias ll='ls -lh'
 alias l='ls -alh'
