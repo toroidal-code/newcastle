@@ -176,6 +176,7 @@ install () {
 	install_quicklisp
 #	install_elget
 	install_emacs_plugins
+	install_prezto
 	install_vundle
 	install_vim_plugins
 	install_nvm
