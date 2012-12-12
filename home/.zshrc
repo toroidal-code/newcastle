@@ -28,7 +28,7 @@ bindkey "^[[B" history-beginning-search-forward
 
 function _update_ps1()
 {
-  export PROMPT="$(~/powerline-zsh.py $?)"
+	export PROMPT="$(~/.powerline-zsh/powersline-zsh.py$?)"
 }
 
 precmd()
