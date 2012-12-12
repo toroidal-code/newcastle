@@ -26,6 +26,16 @@ setopt inc_append_history
 bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
 
+function _update_ps1()
+{
+  export PROMPT="$(~/powerline-zsh.py $?)"
+}
+
+precmd()
+{
+  _update_ps1
+}
+
 # Colored man pages (from https://wiki.archlinux.org/index.php/Man_Page#Colored_man_pages)
 man() {
 	env \
@@ -39,54 +49,13 @@ man() {
 			man "$@"
 }
 
-# Function that displays the hostname if the current session is over SSH
-function ssh_info() {
-	if [[ -n $SSH_CONNECTION ]]; then
-		echo "%{$fg[blue]%}$(hostname) "
-	fi
-}
-
-# Displays version control information if in a repository
-if command -v vcprompt > /dev/null; then
-	has_vcprompt=true
-else
-	has_vcprompt=false
-fi
-function() vc_info() {
-	if $has_vcprompt; then
-		vc_branch=$(vcprompt -f "%b")
-		if [[ -n $vc_branch ]]; then
-			vc_status=$(vcprompt -f "%m%u")
-			echo "%{$fg[cyan]%}$vc_branch%{$fg[green]%}$vc_status%{$reset_color%} "
-		fi
-	fi
-}
-
-# Prompt
-autoload -U colors && colors
-setopt prompt_subst
-export PROMPT='$(ssh_info)%{$fg[cyan]%}%~ $(vc_info)%{$fg[cyan]%}%# %{$reset_color%}'
-
 # Set up the title bar text
 title_info() {
 	print -Pn "\e]2;%~\a"
 }
-
-# Enable title bar info display
-# This gets called every time the working directory changes.
-chpwd() {
-	[[ -t 1 ]] || return
-	title_info
-}
-# This extra call is here so that the title bar will also be set when a new
-# terminal is created.
-title_info
 
 # Load zmv
 autoload -U zmv
 
 # Load autocorrect things
 #setopt correctall
-
-# Automatically use cd when paths are entered without cd
-#setopt autocd
