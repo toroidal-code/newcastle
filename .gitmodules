@@ -13,3 +13,6 @@
 [submodule "home/.emacs.d/el-get/el-get"]
 	path = home/.emacs.d/el-get/el-get
 	url = git://github.com/dimitri/el-get.git
+[submodule "home/.vim/bundle/vundle"]
+	path = home/.vim/bundle/vundle
+	url = https://github.com/gmarik/vundle.git
