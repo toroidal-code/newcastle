@@ -53,8 +53,8 @@ set diffopt+=iwhite
 
 " Powerline
 set laststatus=2
-"set t_Co=256
 let g:Powerline_symbols='unicode'
+let g:Powerline_symbols = 'fancy'
 
 " remember last cursor position
 autocmd BufReadPost *
@@ -140,14 +140,6 @@ map ; :
 
 " typing ;; quickly exits insert mode
 imap ;; <Esc>
-
-
-" indent individual lines
-nmap <Left>   <<
-nmap <Right>  >>
-" indent multiple lines
-vmap <Left>   <gv
-vmap <Right>  >gv
 
 " delete individual lines with ctrl-k
 map  <C-K>    dd
