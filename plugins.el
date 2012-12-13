@@ -13,3 +13,8 @@
 
 (el-get-install "color-theme")
 (el-get-install "paredit")
+(el-get-install "Enhanced-Ruby-Mode")
+(el-get-install "auto-complete")
+(el-get-install "powerline")
+(el-get-install "cedet")
+
