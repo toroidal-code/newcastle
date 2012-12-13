@@ -14,6 +14,7 @@ Bundle 'ervandew/supertab'
 Bundle 'scrooloose/syntastic'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'tpope/vim-rails'
+Bundle 'tclem/vim-arduino'
 
 " Color Schemes
 Bundle 'tomasr/molokai'

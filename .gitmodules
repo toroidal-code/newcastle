@@ -1,0 +1,12 @@
+[submodule "home/.powerline-zsh"]
+	path = home/.powerline-zsh
+	url = https://github.com/toroidal-code/powerline-zsh.git
+[submodule "home/.oh-my-zsh"]
+	path = home/.oh-my-zsh
+	url = git://github.com/robbyrussell/oh-my-zsh.git
+[submodule "home/.zprezto"]
+	path = home/.zprezto
+	url = git://github.com/sorin-ionescu/prezto.git
+[submodule "home/.tmux-powerline"]
+	path = home/.tmux-powerline
+	url = git://github.com/erikw/tmux-powerline.git

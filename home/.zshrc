@@ -1,6 +1,27 @@
-# Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+NEWCASTLE="zsh"
+
+# Path to your oh-my-zsh configuration.
+ZSH=$HOME/.oh-my-zsh
+
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+ZSH_THEME="robbyrussell"
+
+if [ $NEWCASTLE = "omz" ]; then
+	# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+	# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+	# Example format: plugins=(rails git textmate ruby lighthouse)
+	plugins=(git)
+
+	source $ZSH/oh-my-zsh.sh	
+
+elif [ $NEWCASTLE = "prezto" ]; then
+	# Source Prezto.
+	if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+	  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+	fi
 fi
 
 # Completions
@@ -31,6 +52,19 @@ setopt inc_append_history
 bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
 
+if [ $NEWCASTLE = "zsh" ]
+	then
+		function _update_ps1()
+		{
+			export PROMPT="$(~/.powerline-zsh/powerline-zsh.py $?)"
+		}
+
+		precmd()
+		{
+			_update_ps1
+		}
+
+fi
 # Colored man pages (from https://wiki.archlinux.org/index.php/Man_Page#Colored_man_pages)
 man() {
 	env \
@@ -43,7 +77,6 @@ man() {
 		LESS_TERMCAP_us=$(printf "\e[1;32m") \
 			man "$@"
 }
-
 
 # Load zmv
 autoload -U zmv
