@@ -9,14 +9,19 @@ ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="robbyrussell"
 
-if [ $NEWCASTLE = "omz" ]
-	then
-		# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-		# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-		# Example format: plugins=(rails git textmate ruby lighthouse)
-		plugins=(git)
+if [ $NEWCASTLE = "omz" ]; then
+	# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+	# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+	# Example format: plugins=(rails git textmate ruby lighthouse)
+	plugins=(git)
 
-		source $ZSH/oh-my-zsh.sh	
+	source $ZSH/oh-my-zsh.sh	
+
+elif [ $NEWCASTLE = "prezto" ]; then
+	# Source Prezto.
+	if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+	  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+	fi
 fi
 
 # Completions
