@@ -1,3 +1,3 @@
 [submodule "home/.powerline-zsh"]
 	path = home/.powerline-zsh
-	url = git://github.com/toroidal-code/powerline-zsh.git
+	url = https://github.com/toroidal-code/powerline-zsh.git
