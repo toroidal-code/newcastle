@@ -1,5 +1,7 @@
 NEWCASTLE="zsh"
 
+export PATH=~/.bin:$PATH
+
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
