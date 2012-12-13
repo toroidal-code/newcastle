@@ -1,6 +1,9 @@
 (add-to-list 'load-path "~/.emacs.d/")
 (add-to-list 'load-path "~/.emacs.d/plugins/")
 
+(require 'powerline)
+(powerline-default)
+
 (require 'ido)
 (ido-mode t)
 (setq ido-enable-flex-matching t) ;; enable fuzzy matching
