@@ -1,8 +1,3 @@
-# Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
-
 # Completions
 autoload -U compinit; compinit
 
@@ -31,6 +26,16 @@ setopt inc_append_history
 bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
 
+function _update_ps1()
+{
+	export PROMPT="$(~/.powerline-zsh/powerline-zsh.py $?)"
+}
+
+precmd()
+{
+  _update_ps1
+}
+
 # Colored man pages (from https://wiki.archlinux.org/index.php/Man_Page#Colored_man_pages)
 man() {
 	env \
@@ -43,7 +48,6 @@ man() {
 		LESS_TERMCAP_us=$(printf "\e[1;32m") \
 			man "$@"
 }
-
 
 # Load zmv
 autoload -U zmv
