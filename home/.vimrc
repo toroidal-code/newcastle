@@ -56,6 +56,9 @@ set laststatus=2
 let g:Powerline_symbols='unicode'
 let g:Powerline_symbols = 'fancy'
 
+" Allow backspace to remove text not from current session
+set backspace=indent,eol,start
+
 " remember last cursor position
 autocmd BufReadPost *
 	\ if line("'\"") > 0 && line("'\"") <= line("$") |

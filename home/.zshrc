@@ -58,7 +58,7 @@ if [ $NEWCASTLE = "zsh" ]
 	then
 		function _update_ps1()
 		{
-			export PROMPT="$(~/.powerline-zsh/powerline-zsh.py $?)"
+			export PROMPT="$(~/.powerline-zsh/powerline-zsh.py --cwd-only $?)"
 		}
 
 		precmd()
