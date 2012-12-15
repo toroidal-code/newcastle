@@ -66,7 +66,7 @@ autocmd BufReadPost *
 set showbreak=>\ \ \ 
 
 " disable folds
-set nofoldenable
+set foldenable
 
 " enable completion
 set ofu=syntaxcomplete#Complete
@@ -89,11 +89,11 @@ set gdefault "imply global for new searches
 """""""""""""
 
 " Number of spaces that a <Tab> in the file counts for
-set tabstop=2
+set tabstop=4
 " Number of spaces to use for each step of (auto)indent
-set shiftwidth=2
-" Use real tabs, not spaces, for indents
-set noexpandtab
+set shiftwidth=4
+" Use spaces, not tabs, for indents
+set expandtab
 " When auto-indenting, use the indenting format of the previous line
 set copyindent
 " When on, a <Tab> in front of a line inserts blanks according to 'shiftwidth'.
