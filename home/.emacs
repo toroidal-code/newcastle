@@ -1,4 +1,4 @@
-b(add-to-list 'load-path "~/.emacs.d/")
+(add-to-list 'load-path "~/.emacs.d/")
 (add-to-list 'load-path "~/.emacs.d/plugins/")
 
 (load-file "~/.emacs.d/plugins/load-path.el")
@@ -28,7 +28,7 @@ b(add-to-list 'load-path "~/.emacs.d/")
 (load-file "~/.emacs.d/plugins/color-theme-molokai.el")
 (color-theme-molokai)
 
-;; Setup quicklisp's SLIME
+
 (load (expand-file-name "~/quicklisp/slime-helper.el"))
 (setq inferior-lisp-program "sbcl")
 
