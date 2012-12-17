@@ -66,6 +66,19 @@ if [ $NEWCASTLE = "zsh" ]
 			_update_ps1
 		}
 
+elif [ $NEWCASTLE = "simple-zsh" ]
+    # Function that displays the hostname if the current session is over SSH
+    function ssh_info() {
+    if [[ -n $SSH_CONNECTION ]]; then
+	echo "%{$fg[blue]%}$(hostname) "
+    fi
+    }
+    
+    # Prompt
+    autoload -U colors && colors
+    setopt prompt_subst
+    export PROMPT='$(ssh_info)%{$fg[cyan]%}%~ $(vc_info)%{$fg[cyan]%}%# %{$reset_color%}'
+
 fi
 # Colored man pages (from https://wiki.archlinux.org/index.php/Man_Page#Colored_man_pages)
 man() {
@@ -82,6 +95,7 @@ man() {
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
     [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh ]]
+    export PATH=/usr/local/share/python3:$PATH
 fi
 
 # Load zmv
