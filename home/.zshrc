@@ -58,7 +58,7 @@ if [ $NEWCASTLE = "zsh" ]
 	then
 		function _update_ps1()
 		{
-			export PROMPT="$(~/.powerline-zsh/powerline-zsh.py --cwd-only $?)"
+			export PROMPT="$(python2 ~/.powerline-zsh/powerline-zsh.py --cwd-only $?)"
 		}
 
 		precmd()
@@ -66,7 +66,7 @@ if [ $NEWCASTLE = "zsh" ]
 			_update_ps1
 		}
 
-elif [ $NEWCASTLE = "simple-zsh" ]
+elif [ $NEWCASTLE = "simple-zsh"]; then
     # Function that displays the hostname if the current session is over SSH
     function ssh_info() {
     if [[ -n $SSH_CONNECTION ]]; then
