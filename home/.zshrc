@@ -58,7 +58,7 @@ if [ $NEWCASTLE = "zsh" ]
 	then
 		function _update_ps1()
 		{
-			export PROMPT="$(python2 ~/.powerline-zsh/powerline-zsh.py --cwd-only $?)"
+			export PROMPT="$(~/.powerline-zsh/powerline-zsh.py --cwd-only $?)"
 		}
 
 		precmd()
@@ -97,6 +97,8 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh ]]
     export PATH=/usr/local/share/python3:$PATH
 fi
+
+source $HOME/.rvm/scripts/rvm
 
 # Load zmv
 autoload -U zmv

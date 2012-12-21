@@ -45,8 +45,8 @@ set number
 set cursorline
 
 " wrapping stuff
-set textwidth=80
-set colorcolumn=80
+"set textwidth=80
+"set colorcolumn=80
 
 " ignore whitespace in diff mode
 set diffopt+=iwhite
