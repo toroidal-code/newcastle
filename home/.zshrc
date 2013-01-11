@@ -96,6 +96,7 @@ man() {
 if [[ "$OSTYPE" == "darwin"* ]]; then
     [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh ]]
     export PATH=/usr/local/share/python3:$PATH
+    export BYOBU_PREFIX=$(brew --prefix)
 fi
 
 source $HOME/.rvm/scripts/rvm
@@ -105,3 +106,9 @@ autoload -U zmv
 
 # Load autocorrect things
 #setopt correctall
+
+export PATH=/usr/local/share/npm/bin:$PATH
+
+export NODE_PATH=/Users/kate/.nvm/v0.8.16/lib/node_modules
+
+. ~/.nvm/nvm.sh
