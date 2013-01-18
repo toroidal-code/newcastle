@@ -65,3 +65,14 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+(require 'auto-complete-config)
+(ac-config-default)
+(global-auto-complete-mode t)
+(auto-complete-mode t)
+
+;; create and add new words to the dictionary on the fly
+(when (require 'auto-complete-config nil 'noerror)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+  (setq ac-comphist-file "~/.emacs.d/ac-comphist.dat")
+  (ac-config-default))

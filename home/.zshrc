@@ -99,7 +99,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     export BYOBU_PREFIX=$(brew --prefix)
 fi
 
-source $HOME/.rvm/scripts/rvm
+#source $HOME/.rvm/scripts/rvm
 
 # Load zmv
 autoload -U zmv
