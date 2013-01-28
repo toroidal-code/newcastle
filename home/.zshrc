@@ -1,9 +1,11 @@
 NEWCASTLE="zsh"
 
-export PATH=~/.bin:$PATH
+export PATH=/usr/local/Cellar/ruby/1.9.3-p362/bin:~/.bin:$PATH
 
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
+
+autoload -U compinit; compinit
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -58,7 +60,7 @@ if [ $NEWCASTLE = "zsh" ]
 	then
 		function _update_ps1()
 		{
-			export PROMPT="$(~/.powerline-zsh/powerline-zsh.py --cwd-only $?)"
+			export PROMPT="$(/Users/kate/git/powerline-zsh/c/powerline $?)"
 		}
 
 		precmd()
