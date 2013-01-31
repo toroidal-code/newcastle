@@ -94,7 +94,7 @@ alias python='python3'
 alias py='python3'
 alias py2='python2'
 alias sbcl='rlwrap --history-no-dupes 1 --histsize 5000 --history-filename $HOME/.rlwrap.d/sbcl_history sbcl'
-alias clj="clojure"
+#alias clj="clojure"
 
 
 # git
@@ -120,13 +120,15 @@ alias gshw='git show --color-words'
 alias e='emacs -nw'
 alias ex='emacs'
 
-
 # vim
 alias v='vim -p'
 alias va='vim -p *'
 alias vh='vim -o'
 alias vv='vim -O'
 alias vd='vim -d'
+
+# ruby
+alias rup='rackup'
 
 # feh
 alias feh='feh --scale-down --auto-zoom'
@@ -142,6 +144,7 @@ fi
 if [[ "$OSTYPE" == darwin* ]]; then
     export CLICOLOR=1
     alias ls='ls -GpF'
+    alias readlink='greadlink'
 else 
     alias ls='ls -hGp --color=auto'
 fi

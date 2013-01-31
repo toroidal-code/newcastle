@@ -1,11 +1,13 @@
-#NEWCASTLE="simple-zsh"
 NEWCASTLE="zsh"
 
 export PATH=~/.bin:$PATH
 export BYOBU_PREFIX=$(brew --prefix)
+export PATH=/usr/local/Cellar/ruby/1.9.3-p362/bin:~/.bin:$PATH
 
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
+
+autoload -U compinit; compinit
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -39,6 +41,7 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:
 
 # Set up aliases
 . ~/.aliases
+. ~/.lulz
 
 # Autocomplete command line switches for aliases
 setopt completealiases
@@ -60,9 +63,13 @@ if [ $NEWCASTLE = "zsh" ]
 	then
 		function _update_ps1()
 		{
+<<<<<<< HEAD
 		#	export PROMPT="$(~/.powerline-zsh/powerline-zsh.py --cwd-only $?)"	
 			export PROMPT="$(~/.powerline-zsh/c/powerline-zsh $?)"
 		
+=======
+			export PROMPT="$(/Users/kate/git/powerline-zsh/c/powerline $?)"
+>>>>>>> d4dd1c787536035f2a43eb86c2be9260b47555d0
 		}
 
 		precmd()
@@ -98,7 +105,12 @@ man() {
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
     [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh ]]
+<<<<<<< HEAD
     export PATH=/usr/local/share/npm/bin:/usr/local/share/python3:$PATH
+=======
+    export PATH=/usr/local/share/python3:$PATH
+    export BYOBU_PREFIX=$(brew --prefix)
+>>>>>>> d4dd1c787536035f2a43eb86c2be9260b47555d0
 fi
 
 #source $HOME/.rvm/scripts/rvm
@@ -108,3 +120,9 @@ autoload -U zmv
 
 # Load autocorrect things
 #setopt correctall
+
+export PATH=/usr/local/share/npm/bin:$PATH
+
+export NODE_PATH=/Users/kate/.nvm/v0.8.16/lib/node_modules
+
+. ~/.nvm/nvm.sh
