@@ -1,6 +1,8 @@
+#NEWCASTLE="simple-zsh"
 NEWCASTLE="zsh"
 
 export PATH=~/.bin:$PATH
+export BYOBU_PREFIX=$(brew --prefix)
 
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
@@ -58,15 +60,16 @@ if [ $NEWCASTLE = "zsh" ]
 	then
 		function _update_ps1()
 		{
-			export PROMPT="$(~/.powerline-zsh/powerline-zsh.py --cwd-only $?)"
+		#	export PROMPT="$(~/.powerline-zsh/powerline-zsh.py --cwd-only $?)"	
+			export PROMPT="$(~/.powerline-zsh/c/powerline-zsh $?)"
+		
 		}
 
 		precmd()
 		{
 			_update_ps1
 		}
-
-elif [ $NEWCASTLE = "simple-zsh"]; then
+elif [ $NEWCASTLE = "simple-zsh" ]; then
     # Function that displays the hostname if the current session is over SSH
     function ssh_info() {
     if [[ -n $SSH_CONNECTION ]]; then
@@ -95,10 +98,10 @@ man() {
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
     [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh ]]
-    export PATH=/usr/local/share/python3:$PATH
+    export PATH=/usr/local/share/npm/bin:/usr/local/share/python3:$PATH
 fi
 
-source $HOME/.rvm/scripts/rvm
+#source $HOME/.rvm/scripts/rvm
 
 # Load zmv
 autoload -U zmv

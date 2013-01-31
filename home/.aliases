@@ -88,11 +88,14 @@ alias ja='java'
 alias jc='javac'
 alias jca='javac *.java'
 alias jrm='rm *.class'
+alias irb='pry'
 alias rb='ruby'
+alias python='python3'
 alias py='python3'
 alias py2='python2'
 alias sbcl='rlwrap --history-no-dupes 1 --histsize 5000 --history-filename $HOME/.rlwrap.d/sbcl_history sbcl'
 alias clj="clojure"
+
 
 # git
 alias g='git'
