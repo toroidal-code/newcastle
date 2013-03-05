@@ -13,3 +13,9 @@
 [submodule "home/.vim/bundle/vundle"]
 	path = home/.vim/bundle/vundle
 	url = https://github.com/gmarik/vundle.git
+[submodule "home/.emacs.d/themes/monokai"]
+	path = home/.emacs.d/themes/monokai
+	url = https://github.com/lvillani/el-monokai-theme.git
+[submodule "home/.emacs.d/themes/zenburn"]
+	path = home/.emacs.d/themes/zenburn
+	url = https://github.com/bbatsov/zenburn-emacs.git

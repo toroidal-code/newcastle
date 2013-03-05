@@ -11,10 +11,11 @@
 (el-get 'sync)
 
 
-(el-get-install "color-theme")
 (el-get-install "paredit")
-(el-get-install "Enhanced-Ruby-Mode")
 (el-get-install "auto-complete")
-(el-get-install "powerline")
 (el-get-install "cedet")
-
+(el-get-install "magit")
+(el-get-install "j-mode")
+(el-get-install "ruby-mode")
+(el-get-install "yaml-mode")
+(el-get-install "j-mode")

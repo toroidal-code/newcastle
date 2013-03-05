@@ -64,7 +64,7 @@ if [ $NEWCASTLE = "zsh" ]
 		function _update_ps1()
 		{
 			export PROMPT="$(~/.powerline-zsh/powerline-zsh.py --cwd-only $?)"	
-
+			PROMPT="$PROMPT"`$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")`
 		}
 
 		precmd()

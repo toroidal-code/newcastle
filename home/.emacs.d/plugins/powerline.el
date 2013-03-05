@@ -12,8 +12,6 @@
 
 (require 'cl)
 
-(defvar powerline-buffer-size-suffix t)
-
 (defface powerline-active1 '((t (:background "grey22" :inherit mode-line)))
   "Powerline face 1."
   :group 'powerline)
@@ -32,6 +30,10 @@
   "Powerline face 2."
   :group 'powerline)
 
+(defcustom powerline-buffer-size-suffix t
+  "Display the buffer size suffix."
+  :group 'powerline
+  :type 'boolean)
 
 (defun create-or-get-powerline-cache ()
   "Return a frame-local hash table that acts as a memoization
@@ -67,38 +69,43 @@ frame-local."
            (puthash ,args-sym (apply ,func ,args-sym) ,cache-sym))))))
 
 
-(defun pl/arrow-row-right (dots width)
-  "Generate a string with DOTS dots and spaces to fill out WIDTH."
-  (concat "\""
-          (make-string dots ?.)
-          (make-string (- width dots) ? )
+(defun pl/xpm-row-string (width total left right)
+  "Generate a string of two types of characters filled on the
+left by WIDTH out of TOTAL. "
+  (concat "\"" (make-string width left)
+          (make-string (- total width) right)
           "\","))
 
-(defun pl/arrow-row-left (dots width)
-  "Generate a string with DOTS dots and spaces to fill out WIDTH."
-  (concat "\""
-          (make-string (- width dots) ?.)
-          (make-string dots ? )
-          "\","))
+(defun pl/hex-color (color)
+  "Gets the hexadecimal value of a color"
+  (let ((ret color))
+    (cond
+     ((string= "#" (substring color 0 1))
+      (setq ret (upcase ret)))
+     ((color-defined-p color)
+      (setq ret (concat "#"
+                        (mapconcat
+                         (lambda(val)
+                           (format "%02X" (* val 255)))
+                         (color-name-to-rgb color) ""))))
+     (t (setq ret nil)))
+    (symbol-value 'ret)))
 
-
-(defun pl/size-up (unitsize width)
-  "Extend WIDTH to the nearest multiple of the UNITSIZE."
-  (* unitsize (ceiling width unitsize)))
-
-
-(defmacro pl/arrow-xpm (dir)
+(defmacro pl/arrow (dir)
   "Generate an arrow xpm function for DIR."
-  (let ((rowfunc (intern (format "pl/arrow-row-%s" (symbol-name dir)))))
+  (let ((start (if (eq dir 'left) 'width 0))
+        (end (if (eq dir 'left) '(- width midwidth) 'midwidth))
+        (incr (if (eq dir 'left) -1 1)))
     `(defun ,(intern (format "powerline-arrow-%s" (symbol-name dir)))
        (face1 face2 &optional height)
        (when window-system
          (unless height (setq height (frame-char-height)))
-         (let* ((color1 (if face1 (face-attribute face1 :background) "None"))
-                (color2 (if face2 (face-attribute face2 :background) "None"))
-                (dots (1- (/ height 2)))
+         (let* ((color1 (if face1 (pl/hex-color (face-attribute face1 :background)) "None"))
+                (color2 (if face2 (pl/hex-color (face-attribute face2 :background)) "None"))
+                (midwidth (1- (/ height 2)))
                 (width (1- (ceiling height 2)))
-                (odd (not (= dots width))))
+                (seq (number-sequence ,start ,end ,incr))
+                (odd (not (= midwidth width))))
            (create-image
             (concat
              (format "/* XPM */
@@ -108,20 +115,20 @@ static char * arrow_%s[] = {
 \"  c %s\",
 " (symbol-name ',dir) width height (or color1 "None") (or color2 "None"))
              (mapconcat
-              (lambda (d) (,rowfunc d width)) (number-sequence 0 dots) "\n")
-             (and odd "\n")
-             (and odd (,rowfunc (+ dots 1) width))
+              (lambda (d) (pl/xpm-row-string d width ?. ? )) seq "\n")
+             (and odd (concat "\n" (pl/xpm-row-string (+ ,end ,incr) width ?. ? )))
              "\n"
              (mapconcat
-              (lambda (d) (,rowfunc d width)) (number-sequence dots 0 -1) "\n")
+              (lambda (d) (pl/xpm-row-string d width ?. ? )) (reverse seq) "\n")
              "};")
-            'xpm t :ascent 'center))))))
+            'xpm t :ascent 'center
+            :face (when (and face1 face2) (if (eq ',dir 'left) face1 face2))))))))
 
 (defun powerline-reset ()
   "Reset memoized functions."
   (interactive)
-  (memoize (pl/arrow-xpm left))
-  (memoize (pl/arrow-xpm right)))
+  (memoize (pl/arrow left))
+  (memoize (pl/arrow right)))
 (powerline-reset)
 
 (defun pl/make-xpm (name color1 color2 data)
@@ -380,6 +387,7 @@ static char * %s[] = {
                 '("%e"
                   (:eval
                    (let* ((active (powerline-selected-window-active))
+                          (mode-line (if active 'mode-line 'mode-line-inactive))
                           (face1 (if active 'powerline-active1
                                    'powerline-inactive1))
                           (face2 (if active 'powerline-active2
@@ -390,7 +398,7 @@ static char * %s[] = {
                                 (powerline-buffer-id nil 'l)
 
                                 (powerline-raw " ")
-                                (powerline-arrow-right nil face1)
+                                (powerline-arrow-right mode-line face1)
 
                                 (powerline-narrow face1 'l)
 
@@ -402,7 +410,7 @@ static char * %s[] = {
                                 (powerline-raw ":" face1)
                                 (powerline-raw "%3c" face1 'r)
 
-                                (powerline-arrow-left face1 nil)
+                                (powerline-arrow-left face1 mode-line)
                                 (powerline-raw " ")
                                 (powerline-raw "%6p" nil 'r)
                                 (powerline-hud face2 face1)))
@@ -411,7 +419,7 @@ static char * %s[] = {
                                    (powerline-arrow-right face1 face2)
                                    (when (boundp 'erc-modified-channels-object)
                                      (powerline-raw erc-modified-channels-object
-                                                    face1 'l))
+                                                    face2 'l))
                                    (powerline-major-mode face2 'l)
                                    (powerline-process face2)
                                    (powerline-raw " :" face2)
@@ -439,6 +447,7 @@ static char * %s[] = {
                 '("%e"
                   (:eval
                    (let* ((active (powerline-selected-window-active))
+                          (mode-line (if active 'mode-line 'mode-line-inactive))
                           (face1 (if active 'powerline-active1
                                    'powerline-inactive1))
                           (face2 (if active 'powerline-active2
@@ -449,7 +458,7 @@ static char * %s[] = {
                                 (powerline-buffer-id nil 'l)
 
                                 (powerline-raw " ")
-                                (powerline-arrow-right nil face1)
+                                (powerline-arrow-right mode-line face1)
 
                                 (when (boundp 'erc-modified-channels-object)
                                   (powerline-raw erc-modified-channels-object
@@ -473,7 +482,7 @@ static char * %s[] = {
                                 (powerline-raw ":" face1)
                                 (powerline-raw "%3c" face1 'r)
 
-                                (powerline-arrow-left face1 nil)
+                                (powerline-arrow-left face1 mode-line)
                                 (powerline-raw " ")
 
                                 (powerline-raw "%6p" nil 'r)
@@ -523,7 +532,9 @@ static char * %s[] = {
 
 (defun pl/render (item)
   (cond
-   ((and (listp item) (eq 'image (car item))) (propertize " " 'display item))
+   ((and (listp item) (eq 'image (car item)))
+    (propertize " " 'display item
+                'face (plist-get (cdr item) :face)))
    (item item)))
 
 (defun powerline-render (values)

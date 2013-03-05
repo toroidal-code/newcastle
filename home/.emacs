@@ -1,11 +1,11 @@
 (add-to-list 'load-path "~/.emacs.d/")
 (add-to-list 'load-path "~/.emacs.d/plugins/")
+(load-file "~/.emacs.d/themes/zenburn/zenburn-theme.el")
+(load-file "~/.emacs.d/themes/monokai/monokai-theme.el")
+
 
 (load-file "~/.emacs.d/plugins/load-path.el")
 (set-exec-path-from-shell-PATH)
-
-(require 'powerline)
-(powerline-default)
 
 (require 'ido)
 (ido-mode t)
@@ -24,9 +24,14 @@
 
 (el-get 'sync)
 
+(require 'powerline)
+(powerline-default)
+
+(setq rsense-home "/home/kate/.emacs.d/el-get/rsense/")
+(require 'rsense)
+
 ;;The Molokai color theme
-(load-file "~/.emacs.d/plugins/color-theme-molokai.el")
-(color-theme-molokai)
+(load-theme 'monokai t)
 
 
 (load (expand-file-name "~/quicklisp/slime-helper.el"))
@@ -58,6 +63,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes (quote ("d24e10524bb50385f7631400950ba488fa45560afcadd21e6e03c2f5d0fad194" "36a309985a0f9ed1a0c3a69625802f87dee940767c9e200b89cdebdb737e5b29" default)))
  '(python-shell-interpreter "python3")
  '(ruby-indent-level 4)
  '(ruby-indent-tabs-mode nil)
@@ -68,7 +74,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:background "nil")))))
 
 (dolist (command '(yank yank-pop)) 
   (eval `(defadvice ,command (after  indent-region activate)
@@ -93,3 +99,14 @@
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
   (setq ac-comphist-file "~/.emacs.d/ac-comphist.dat")
   (ac-config-default))
+
+;; Rsense's AC Mode
+(add-hook 'ruby-mode-hook
+          (lambda ()
+            (add-to-list 'ac-sources 'ac-source-rsense-method)
+            (add-to-list 'ac-sources 'ac-source-rsense-constant)))
+
+;; Complete by C-c .
+(add-hook 'ruby-mode-hook
+          (lambda ()
+            (local-set-key (kbd "C-c .") 'ac-complete-rsense)))
