@@ -19,3 +19,6 @@
 [submodule "home/.emacs.d/themes/zenburn"]
 	path = home/.emacs.d/themes/zenburn
 	url = https://github.com/bbatsov/zenburn-emacs.git
+[submodule "home/.emacs.d/themes/solarized"]
+	path = home/.emacs.d/themes/solarized
+	url = https://github.com/bbatsov/solarized-emacs.git

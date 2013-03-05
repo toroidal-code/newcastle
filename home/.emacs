@@ -1,6 +1,7 @@
 (add-to-list 'load-path "~/.emacs.d/")
 (add-to-list 'load-path "~/.emacs.d/plugins/")
-(load-file "~/.emacs.d/themes/zenburn/zenburn-theme.el")
+(load-file "~/.emacs.d/themes/solarized/solarized.el")
+(load-file "~/.emacs.d/themes/solarized/solarized-dark-theme.el")
 (load-file "~/.emacs.d/themes/monokai/monokai-theme.el")
 
 
@@ -63,7 +64,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("d24e10524bb50385f7631400950ba488fa45560afcadd21e6e03c2f5d0fad194" "36a309985a0f9ed1a0c3a69625802f87dee940767c9e200b89cdebdb737e5b29" default)))
+ '(custom-safe-themes (quote ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d24e10524bb50385f7631400950ba488fa45560afcadd21e6e03c2f5d0fad194" "36a309985a0f9ed1a0c3a69625802f87dee940767c9e200b89cdebdb737e5b29" default)))
  '(python-shell-interpreter "python3")
  '(ruby-indent-level 4)
  '(ruby-indent-tabs-mode nil)
