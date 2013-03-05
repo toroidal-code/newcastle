@@ -22,6 +22,7 @@ alias free='free -h'
 alias less='less -i'
 alias mkdir='mkdir -pv'
 alias ping='ping -c 5'
+alias cat='vimcat'
 
 # shortcuts
 alias _="sudo"
@@ -94,12 +95,12 @@ alias python='python3'
 alias py='python3'
 alias py2='python2'
 alias sbcl='rlwrap --history-no-dupes 1 --histsize 5000 --history-filename $HOME/.rlwrap.d/sbcl_history sbcl'
-#alias clj="clojure"
 
 
 # git
 alias g='git'
-alias gst='git status --short'
+alias gst='git status'
+alias gsts='git status --short'
 alias ga='git add'
 alias gap='git add -p'
 alias gc='git commit -v'
@@ -117,8 +118,8 @@ alias gsh='git show'
 alias gshw='git show --color-words'
 
 #emacs
-alias e='emacs -nw'
-alias ex='emacs'
+alias e='emacsclient -t -nw'
+alias ex='emacsclient -t'
 
 # vim
 alias v='vim -p'
@@ -129,6 +130,7 @@ alias vd='vim -d'
 
 # ruby
 alias rup='rackup'
+alias rsp='rails s puma'
 
 # feh
 alias feh='feh --scale-down --auto-zoom'

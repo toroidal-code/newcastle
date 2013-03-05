@@ -28,6 +28,7 @@ fi
 export EDITOR='emacs'
 export VISUAL='emacs'
 export PAGER='less'
+export ALTERNATE_EDITOR=""
 
 #
 # Language
