@@ -1,18 +1,10 @@
 (add-to-list 'load-path "~/.emacs.d/")
 (add-to-list 'load-path "~/.emacs.d/plugins/")
-(load-file "~/.emacs.d/themes/solarized/solarized.el")
-(load-file "~/.emacs.d/themes/solarized/solarized-dark-theme.el")
-(load-file "~/.emacs.d/themes/monokai/monokai-theme.el")
-
 
 (load-file "~/.emacs.d/plugins/load-path.el")
 (set-exec-path-from-shell-PATH)
 
-(require 'ido)
-(ido-mode t)
-(setq ido-enable-flex-matching t) ;; enable fuzzy matching
-
-
+;; EL-GET should always be at the top, so files are required
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
 (unless (require 'el-get nil 'noerror)
@@ -25,15 +17,23 @@
 
 (el-get 'sync)
 
+(require 'ido)
+(ido-mode t)
+(setq ido-enable-flex-matching t) ;; enable fuzzy matching
+
+;;The Molokai color theme
+(load-file "~/.emacs.d/themes/solarized/solarized.el")
+(load-file "~/.emacs.d/themes/solarized/solarized-dark-theme.el")
+;;(load-file "~/.emacs.d/themes/solarized/solarized-light-theme.el")
+(load-file "~/.emacs.d/themes/monokai/monokai-theme.el")
+;;(load-file "~/.emacs.d/themes/zenburn/zenburn-theme.el")
+;;(load-theme 'solarized-dark t)
+
 (require 'powerline)
 (powerline-default)
 
 (setq rsense-home "/home/kate/.emacs.d/el-get/rsense/")
 (require 'rsense)
-
-;;The Molokai color theme
-(load-theme 'monokai t)
-
 
 (load (expand-file-name "~/quicklisp/slime-helper.el"))
 (setq inferior-lisp-program "sbcl")
@@ -70,12 +70,6 @@
  '(ruby-indent-tabs-mode nil)
  '(tab-stop-list (quote (4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 104 108 112 116 120)))
  '(tab-width 4))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:background "nil")))))
 
 (dolist (command '(yank yank-pop)) 
   (eval `(defadvice ,command (after  indent-region activate)

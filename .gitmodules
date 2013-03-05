@@ -22,3 +22,6 @@
 [submodule "home/.emacs.d/themes/solarized"]
 	path = home/.emacs.d/themes/solarized
 	url = https://github.com/bbatsov/solarized-emacs.git
+[submodule "home/.emacs.d/themes/almost-monokai"]
+	path = home/.emacs.d/themes/almost-monokai
+	url = https://github.com/lut4rp/almost-monokai.git
