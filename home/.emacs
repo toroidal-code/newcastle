@@ -92,4 +92,4 @@
 (when (require 'auto-complete-config nil 'noerror)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
   (setq ac-comphist-file "~/.emacs.d/ac-comphist.dat")
-  (ac-config-default)
+  (ac-config-default))

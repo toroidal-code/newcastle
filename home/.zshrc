@@ -1,7 +1,7 @@
 NEWCASTLE="zsh"
 
 export PATH=~/.bin:$PATH
-export BYOBU_PREFIX=$(brew --prefix)
+#export BYOBU_PREFIX=$(brew --prefix)
 export PATH=/usr/local/Cellar/ruby/1.9.3-p362/bin:~/.bin:$PATH
 
 # Path to your oh-my-zsh configuration.
@@ -63,13 +63,8 @@ if [ $NEWCASTLE = "zsh" ]
 	then
 		function _update_ps1()
 		{
-<<<<<<< HEAD
-		#	export PROMPT="$(~/.powerline-zsh/powerline-zsh.py --cwd-only $?)"	
-			export PROMPT="$(~/.powerline-zsh/c/powerline-zsh $?)"
-		
-=======
-			export PROMPT="$(/Users/kate/git/powerline-zsh/c/powerline $?)"
->>>>>>> d4dd1c787536035f2a43eb86c2be9260b47555d0
+			export PROMPT="$(~/.powerline-zsh/powerline-zsh.py --cwd-only $?)"	
+
 		}
 
 		precmd()
@@ -105,12 +100,8 @@ man() {
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
     [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh ]]
-<<<<<<< HEAD
     export PATH=/usr/local/share/npm/bin:/usr/local/share/python3:$PATH
-=======
-    export PATH=/usr/local/share/python3:$PATH
     export BYOBU_PREFIX=$(brew --prefix)
->>>>>>> d4dd1c787536035f2a43eb86c2be9260b47555d0
 fi
 
 #source $HOME/.rvm/scripts/rvm
@@ -126,3 +117,5 @@ export PATH=/usr/local/share/npm/bin:$PATH
 export NODE_PATH=/Users/kate/.nvm/v0.8.16/lib/node_modules
 
 . ~/.nvm/nvm.sh
+
+PATH=$PATH:/usr/local/rvm/bin # Add RVM to PATH for scripting
