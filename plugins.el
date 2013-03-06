@@ -18,4 +18,4 @@
 (el-get-install "j-mode")
 (el-get-install "ruby-mode")
 (el-get-install "yaml-mode")
-(el-get-install "j-mode")
+(el-get-install "linum+")

@@ -53,8 +53,9 @@ set diffopt+=iwhite
 
 " Powerline
 set laststatus=2
-let g:Powerline_symbols='unicode'
+"let g:Powerline_symbols='unicode'
 let g:Powerline_symbols = 'fancy'
+let g:Powerline_colorscheme='solarized16'
 
 " Allow backspace to remove text not from current session
 set backspace=indent,eol,start
@@ -116,8 +117,9 @@ set smartindent
 
 syntax enable
 set background=dark
-colorscheme molokai
+"colorscheme molokai
 "colorscheme Tomorrow-Night-Bright
+colorscheme solarized 
 
 """"""""
 " GVim "

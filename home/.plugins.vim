@@ -18,6 +18,7 @@ Bundle 'tclem/vim-arduino'
 
 " Color Schemes
 Bundle 'tomasr/molokai'
+Bundle 'altercation/vim-colors-solarized'
 
 " Language/Syntax Support
 Bundle 'jQuery'

@@ -117,7 +117,7 @@ alias gsh='git show'
 alias gshw='git show --color-words'
 
 #emacs
-alias e='emacsclient -t -nw'
+alias e='TERM=xterm-color emacsclient -t -nw'
 alias ex='emacsclient -t'
 
 # vim

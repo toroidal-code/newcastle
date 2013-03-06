@@ -27,26 +27,25 @@
 ;;(load-file "~/.emacs.d/themes/solarized/solarized-light-theme.el")
 (load-file "~/.emacs.d/themes/monokai/monokai-theme.el")
 ;;(load-file "~/.emacs.d/themes/zenburn/zenburn-theme.el")
-;;(load-theme 'solarized-dark t)
+(load-theme 'solarized-dark t)
 
+;; Powerline
 (require 'powerline)
 (powerline-default)
 
+;; Linum Line Numberings
+(require 'linum+)
+(global-linum-mode 1)
+
+;; ===== Languages =============================
+
+;; RSENSE
 (setq rsense-home "/home/kate/.emacs.d/el-get/rsense/")
 (require 'rsense)
 
+;; SLIME
 (load (expand-file-name "~/quicklisp/slime-helper.el"))
 (setq inferior-lisp-program "sbcl")
-
-;;Setup Paredit
-(autoload 'paredit-mode "paredit"
-  "Minor mode for pseudo-structurally editing Lisp code." t)
-(add-hook 'emacs-lisp-mode-hook       (lambda () (paredit-mode +1)))
-(add-hook 'lisp-mode-hook             (lambda () (paredit-mode +1)))
-(add-hook 'lisp-interaction-mode-hook (lambda () (paredit-mode +1)))
-(add-hook 'scheme-mode-hook           (lambda () (paredit-mode +1)))
-(add-hook 'clojure-mode-hook          (lambda () (paredit-mode +1)))
-(add-hook 'slime-repl-mode-hook       (lambda () (paredit-mode +1)))
 
 ;; Stop SLIME's REPL from grabbing DEL,
 ;; which is annoying when backspacing over a '('
@@ -58,6 +57,48 @@
 (add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
 (eval-after-load "auto-complete"
   '(add-to-list 'ac-modes 'slime-repl-mode))
+
+;;Setup Paredit
+(autoload 'paredit-mode "paredit"
+  "Minor mode for pseudo-structurally editing Lisp code." t)
+(add-hook 'emacs-lisp-mode-hook       (lambda () (paredit-mode +1)))
+(add-hook 'lisp-mode-hook             (lambda () (paredit-mode +1)))
+(add-hook 'lisp-interaction-mode-hook (lambda () (paredit-mode +1)))
+(add-hook 'scheme-mode-hook           (lambda () (paredit-mode +1)))
+(add-hook 'clojure-mode-hook          (lambda () (paredit-mode +1)))
+(add-hook 'slime-repl-mode-hook       (lambda () (paredit-mode +1)))
+
+;; Auto-Complete
+(require 'auto-complete-config)
+(ac-config-default)
+(global-auto-complete-mode t)
+(auto-complete-mode t)
+
+;; create and add new words to the dictionary on the fly
+(when (require 'auto-complete-config nil 'noerror)
+  (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+  (setq ac-comphist-file "~/.emacs.d/ac-comphist.dat")
+  (ac-config-default))
+
+;; Rsense's AC Mode
+(add-hook 'ruby-mode-hook
+          (lambda ()
+            (add-to-list 'ac-sources 'ac-source-rsense-method)
+            (add-to-list 'ac-sources 'ac-source-rsense-constant)))
+
+;; Auto-magic indenting
+(dolist (command '(yank yank-pop)) 
+  (eval `(defadvice ,command (after  indent-region activate)
+		   (and (not current-prefix-arg)
+				(member major-mode '(emacs-lisp-mode lisp-mode
+													 clojure-mode    scheme-mode
+													 haskell-mode    ruby-mode
+													 rspec-mode      python-mode
+													 c-mode          c++-mode
+													 objc-mode       latex-mode
+													 plain-tex-mode))
+				(let ((mark-even-if-inactive transient-mark-mode))
+				  (indent-region (region-beginning) (region-end) nil))))))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -71,37 +112,41 @@
  '(tab-stop-list (quote (4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 104 108 112 116 120)))
  '(tab-width 4))
 
-(dolist (command '(yank yank-pop)) 
-  (eval `(defadvice ,command (after  indent-region activate)
-	   (and (not current-prefix-arg)
-		(member major-mode '(emacs-lisp-mode lisp-mode
-						     clojure-mode    scheme-mode
-						     haskell-mode    ruby-mode
-						     rspec-mode      python-mode
-						     c-mode          c++-mode
-						     objc-mode       latex-mode
-						     plain-tex-mode))
-		(let ((mark-even-if-inactive transient-mark-mode))
-		  (indent-region (region-beginning) (region-end) nil))))))
+;; Enable mouse support
+(unless window-system
+  (require 'mouse)
+  (xterm-mouse-mode t)
+  (global-set-key [mouse-4] '(lambda ()
+                              (interactive)
+                              (scroll-down 1)))
+  (global-set-key [mouse-5] '(lambda ()
+                              (interactive)
+                              (scroll-up 1)))
+  (defun track-mouse (e))
+  (setq mouse-sel-mode t))
 
-(require 'auto-complete-config)
-(ac-config-default)
-(global-auto-complete-mode t)
-(auto-complete-mode t)
 
-;; create and add new words to the dictionary on the fly
-(when (require 'auto-complete-config nil 'noerror)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
-  (setq ac-comphist-file "~/.emacs.d/ac-comphist.dat")
-  (ac-config-default))
 
-;; Rsense's AC Mode
-(add-hook 'ruby-mode-hook
-          (lambda ()
-            (add-to-list 'ac-sources 'ac-source-rsense-method)
-            (add-to-list 'ac-sources 'ac-source-rsense-constant)))
+;; Load CEDET.
+;; See cedet/common/cedet.info for configuration details.
+;; IMPORTANT: For Emacs >= 23.2, you must place this *before* any
+;; CEDET component (including EIEIO) gets activated by another
+;; package (Gnus, auth-source, ...).
+;;(require 'cedet)
+(load-file "~/.emacs.d/el-get/cedet/cedet-devel-load.el")
 
-;; Complete by C-c .
-(add-hook 'ruby-mode-hook
-          (lambda ()
-            (local-set-key (kbd "C-c .") 'ac-complete-rsense)))
+;; Add further minor-modes to be enabled by semantic-mode.
+;; See doc-string of `semantic-default-submodes' for other things
+;; you can use here.
+(add-to-list 'semantic-default-submodes 'global-semantic-idle-summary-mode t)
+(add-to-list 'semantic-default-submodes 'global-semantic-idle-completions-mode t)
+(add-to-list 'semantic-default-submodes 'global-cedet-m3-minor-mode t)
+
+;; Enable Semantic
+(semantic-mode 1)
+
+;; Enable EDE (Project Management) features
+(global-ede-mode 1)
+
+;; Load CEDET CONTRIB.
+(load-file "~/.emacs.d/el-get/cedet/contrib/cedet-contrib-load.elc")
