@@ -27,10 +27,10 @@
 	  ;;(load-file "~/.emacs.d/themes/solarized/solarized.el")
 	  ;;(load-file "~/.emacs.d/themes/solarized/solarized-dark-theme.el")
 	  ;;(load-file "~/.emacs.d/themes/solarized/solarized-light-theme.el")
-	  ;;(load-file "~/.emacs.d/themes/monokai/monokai-theme.el")
+      (load-file "~/.emacs.d/themes/monokai/monokai-theme.el")
 	  ;;(load-file "~/.emacs.d/themes/zenburn/zenburn-theme.el")
 	  ;;(load-theme 'solarized-dark t)
-	  ;;(load-theme 'monokai t)
+	  (load-theme 'monokai t)
 	  )
   (progn
 	(require 'color-theme)
@@ -56,10 +56,13 @@
 ;; IMPORTANT: For Emacs >= 23.2, you must place this *before* any
 ;; CEDET component (including EIEIO) gets activated by another
 ;; package (Gnus, auth-source, ...).
-;;(require 'cedet)
-(load-file "~/.emacs.d/el-get/cedet/cedet-devel-load.el")
+(require 'cedet)
+;;(load-file "~/.emacs.d/el-get/cedet/cedet-devel-load.el")
 
 (semantic-load-enable-excessive-code-helpers)
+
+;; Load CEDET CONTRIB.
+(load-file "~/.emacs.d/el-get/cedet/contrib/cedet-contrib-load.elc")
 
 ;; imenu breaks if I don't enable this
 (global-semantic-highlight-func-mode 1)
@@ -67,6 +70,7 @@
 ;; Add further minor-modes to be enabled by semantic-mode.
 ;; See doc-string of `semantic-default-submodes' for other things
 ;; you can use here.
+(add-to-list 'semantic-default-submodes 'global-semantic-tag-folding-mode t)
 (add-to-list 'semantic-default-submodes 'global-semantic-idle-summary-mode t)
 (add-to-list 'semantic-default-submodes 'global-semantic-idle-completions-mode t)
 (add-to-list 'semantic-default-submodes 'global-cedet-m3-minor-mode t)
@@ -75,13 +79,16 @@
 (semantic-mode 1)
 
 ;; Enable EDE (Project Management) features
-(global-ede-mode 1)
-
-;; Load CEDET CONTRIB.
-(load-file "~/.emacs.d/el-get/cedet/contrib/cedet-contrib-load.elc")
+(global-ede-mode nil)
 
 ;; Enable global folding
-(global-semantic-tag-folding-mode)
+;;(require 'semantic-tag-folding)
+;;(global-semantic-tag-folding-mode 1)
+(global-set-key (kbd  "\C-c f") 'senator-fold-tag-toggle)
+;;(local-set-key (kbd  "C-c C-x [") 'semantic-tag-folding-show-block)
+
+;; Load ECB
+(require 'ecb)
 
 ;; ===== Languages =============================
 
@@ -136,6 +143,20 @@
             (add-to-list 'ac-sources 'ac-source-rsense-method)
             (add-to-list 'ac-sources 'ac-source-rsense-constant)))
 
+(require 'auto-complete-clang-async)
+
+(defun ac-cc-mode-setup ()
+  (setq ac-clang-complete-executable "~/.emacs.d/clang-complete")
+  (setq ac-sources '(ac-source-clang-async))
+  (ac-clang-launch-completion-process))
+
+(defun my-ac-config ()
+  (add-hook 'c-mode-common-hook 'ac-cc-mode-setup)
+  (add-hook 'auto-complete-mode-hook 'ac-common-setup)
+  (global-auto-complete-mode t))
+
+(my-ac-config)
+
 ;; Auto-magic indenting
 (dolist (command '(yank yank-pop)) 
   (eval `(defadvice ,command (after  indent-region activate)
@@ -156,6 +177,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes (quote ("293e0b3c09c816a541fcd5716131804f3eae38c7f625f48d5d5845e19f9323bf" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d24e10524bb50385f7631400950ba488fa45560afcadd21e6e03c2f5d0fad194" "36a309985a0f9ed1a0c3a69625802f87dee940767c9e200b89cdebdb737e5b29" default)))
+ '(ecb-auto-activate t)
+ '(ecb-options-version "2.40")
+ '(ecb-tip-of-the-day nil)
  '(python-shell-interpreter "python3")
  '(ruby-indent-level 4)
  '(ruby-indent-tabs-mode nil)
