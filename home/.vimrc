@@ -53,9 +53,9 @@ set diffopt+=iwhite
 
 " Powerline
 set laststatus=2
-let g:Powerline_symbols='unicode'
+"let g:Powerline_symbols='unicode'
 let g:Powerline_symbols = 'fancy'
-let g:Powerline_colorscheme='default'
+"let g:Powerline_colorscheme='default'
 
 " Allow backspace to remove text not from current session
 set backspace=indent,eol,start
@@ -125,7 +125,8 @@ colorscheme molokai
 " GVim "
 """"""""
 
-set gfn=Source\ Code\ Pro\ 10 "set font
+"set gfn=Source\ Code\ Pro\ for\ Powerline\ 10 "set font
+set gfn=Monospace\ 10
 set gcr=n:blinkon0 "disable cursor blinking
 
 set guioptions-=m "remove menu bar

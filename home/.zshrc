@@ -1,3 +1,10 @@
+export WORKON_HOME=~/.virtualenvs
+source /usr/bin/virtualenvwrapper.sh
+
+if [ $COLORTERM  ] && [ $COLORTERM = "gnome-terminal" ]; then
+	export TERM=xterm-256color
+fi
+
 NEWCASTLE="zsh"
 
 export PATH=~/.bin:$PATH
@@ -63,7 +70,8 @@ if [ $NEWCASTLE = "zsh" ]
 	then
 		function _update_ps1()
 		{
-			export PROMPT="$(~/.powerline-zsh/powerline-zsh.py --cwd-only $?)"	
+			export PROMPT="$(~/git/powerline-shell/powerline-shell.py --cwd-only --shell zsh $?)"
+			export RPROMPT="$(~/git/powerline-shell/powerline-shell-right.py --shell zsh)"	
 			PROMPT="$PROMPT"`$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")`
 		}
 
@@ -116,6 +124,12 @@ export PATH=/usr/local/share/npm/bin:$PATH
 
 export NODE_PATH=/Users/kate/.nvm/v0.8.16/lib/node_modules
 
-. ~/.nvm/nvm.sh
+PATH=$PATH:~/.rvm/bin # Add RVM to PATH for scripting
 
-PATH=$PATH:/usr/local/rvm/bin # Add RVM to PATH for scripting
+#begin .cvsrc
+export CVSROOT=www5610@glados.cs.rit.edu:/home/stu1/s6/www5610/cvs
+export CVS_RSH=ssh
+alias   cvsstat='cvs status \!* |& grep Status:'
+alias   cvswhat='cvs status \!* |& grep Status: |& grep -v "to-date"'
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

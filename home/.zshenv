@@ -31,6 +31,12 @@ export PAGER='less'
 export ALTERNATE_EDITOR=""
 
 #
+# Compilers
+#
+export CC=clang
+export CXX=clang++
+
+#
 # Language
 #
 

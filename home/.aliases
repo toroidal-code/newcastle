@@ -13,7 +13,7 @@ else
     alias egrep='egrep --color=auto'
 fi
 alias diff='colordiff' #requires colordiff package
-    
+alias colortest="python -c \"print('\n'.join([(' '.join([('\033[38;5;' + str((i + j)) + 'm' + str((i + j)).ljust(5) + '\033[0m') if i + j < 256 else '' for j in range(10)])) for i in range(0, 256, 10)]))\""
 
 # modified commands
 alias df='df -h'
@@ -22,7 +22,7 @@ alias free='free -h'
 alias less='less -i'
 alias mkdir='mkdir -pv'
 alias ping='ping -c 5'
-alias cat='vimcat'
+alias vcat='vimcat'
 
 # shortcuts
 alias _="sudo"
@@ -94,7 +94,8 @@ alias python='python3'
 alias py='python3'
 alias py2='python2'
 alias sbcl='rlwrap --history-no-dupes 1 --histsize 5000 --history-filename $HOME/.rlwrap.d/sbcl_history sbcl'
-
+alias scheme='rlwrap --history-no-dupes 1 --histsize 5000 --history-filename $HOME/.rlwrap.d/scheme_history scheme'
+alias petite='rlwrap --history-no-dupes 1 --histsize 5000 --history-filename $HOME/.rlwrap.d/petite_history petite'
 
 # git
 alias g='git'
@@ -115,10 +116,13 @@ alias glgs='git log --graph --decorate --pretty=oneline --abbrev-commit'
 alias glg='glgs --stat'
 alias gsh='git show'
 alias gshw='git show --color-words'
+alias gri='git rebase -i'
+
 
 #emacs
-alias e='TERM=xterm-color emacsclient -t -nw'
-alias ex='emacsclient -t'
+alias e='TERM=xterm-color emacsclient -t'
+alias ex='emacsclient -c'
+alias enw='emacs -Q -nw'
 
 # vim
 alias v='vim -p'
