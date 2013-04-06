@@ -1,0 +1,35 @@
+;; My key bindings
+(in-package stumpwm)
+
+(set-prefix-key (kbd "C-;"))
+(define-key *root-map* (kbd "c") "exec gnome-terminal")
+(define-key *root-map* (kbd "C-c") "exec gnome-terminal")
+(define-key *root-map* (kbd "M-l") "killall stumpwm")
+(define-key *root-map* (kbd "M-g") "gnew 'new'")
+(loop for num from 2 upto 7 do
+	  (gnew (write-to-string num )))
+
+
+;; Groups
+(define-key stumpwm:*root-map* (stumpwm:kbd "M-Left") "gprev")
+(define-key stumpwm:*root-map* (stumpwm:kbd "M-Right") "gnext")
+
+;; mouse
+(setf *mouse-focus-policy* :sloppy)
+
+;; wallpaper
+(stumpwm:run-shell-command "feh --bg-fill /home/kate/Pictures/wallpapers/wallpaper1.jpg")
+
+;; Load Mode line
+(load "/home/kate/.stumpwm/mode-line/modeline-config.lisp")
+
+;; Modeline Group Scrolling
+(setf stumpwm:*mode-line-click-hook*
+      (list (lambda (&rest args)
+			  (cond ((eq (second args) 5)
+					 (run-commands "gnext"))
+					((eq (second args) 4)
+					 (run-commands "gprev"))))))
+
+;; Theming
+(load "/home/kate/.stumpwm/effects.lisp")
