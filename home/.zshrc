@@ -5,7 +5,7 @@ if [ $COLORTERM  ] && [ $COLORTERM = "gnome-terminal" ]; then
 	export TERM=xterm-256color
 fi
 
-NEWCASTLE="zsh"
+NEWCASTLE="simple-zsh"
 
 export PATH=~/.bin:$PATH
 #export BYOBU_PREFIX=$(brew --prefix)
@@ -13,8 +13,6 @@ export PATH=/usr/local/Cellar/ruby/1.9.3-p362/bin:~/.bin:$PATH
 
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
-
-autoload -U compinit; compinit
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -39,6 +37,14 @@ fi
 
 # Completions
 autoload -U compinit; compinit
+
+#vcs info
+autoload -U vcs_info
+
+zstyle ':vcs_info:*' actionformats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
+zstyle ':vcs_info:*' formats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}]%f '
+zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
+zstyle ':vcs_info:*' enable git cvs svn
 
 # Arrow key menu for completions
 zstyle ':completion:*' menu select
@@ -86,11 +92,11 @@ elif [ $NEWCASTLE = "simple-zsh" ]; then
 	echo "%{$fg[blue]%}$(hostname) "
     fi
     }
-    
+    precmd(){ vcs_info }    
     # Prompt
     autoload -U colors && colors
     setopt prompt_subst
-    export PROMPT='$(ssh_info)%{$fg[cyan]%}%~ $(vc_info)%{$fg[cyan]%}%# %{$reset_color%}'
+    export PROMPT='$(ssh_info)%{$fg[cyan]%}%~ ${vcs_info_msg_0_}%{$fg[cyan]%}%# %{$reset_color%}'
 
 fi
 # Colored man pages (from https://wiki.archlinux.org/index.php/Man_Page#Colored_man_pages)
