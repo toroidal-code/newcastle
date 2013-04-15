@@ -1,11 +1,12 @@
-export WORKON_HOME=~/.virtualenvs
-source /usr/bin/virtualenvwrapper.sh
-
 if [ $COLORTERM  ] && [ $COLORTERM = "gnome-terminal" ]; then
 	export TERM=xterm-256color
 fi
 
-NEWCASTLE="simple-zsh"
+if [[ -n $SSH_CONNECTION ]]; then
+	NEWCASTLE="simple-zsh"
+else
+	NEWCASTLE="zsh"
+fi
 
 export PATH=~/.bin:$PATH
 #export BYOBU_PREFIX=$(brew --prefix)
@@ -78,6 +79,7 @@ if [ $NEWCASTLE = "zsh" ]
 		{
 			export PROMPT="$(~/git/powerline-shell/powerline-shell.py --cwd-only --shell zsh $?)"
 			export RPROMPT="$(~/git/powerline-shell/powerline-shell-right.py --shell zsh)"	
+			#export PROMPT="$(~/git/powerline-zsh/powerline-zsh.py --cwd-only $?)"
 			PROMPT="$PROMPT"`$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")`
 		}
 

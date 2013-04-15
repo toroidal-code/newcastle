@@ -2,21 +2,17 @@
 Bundle 'gmarik/vundle'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'tpope/vim-fugitive'
-Bundle 'taglist.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'Townk/vim-autoclose'
-Bundle 'matchit.zip'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-surround'
 "Bundle 'Valloric/YouCompleteMe'
 Bundle 'sjl/gundo.vim'
 Bundle 'ervandew/supertab'
 Bundle 'scrooloose/syntastic'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'tpope/vim-rails'
-Bundle 'tclem/vim-arduino'
+Bundle 'majutsushi/tagbar'
 
 " Color Schemes
 Bundle 'tomasr/molokai'
@@ -28,8 +24,11 @@ Bundle 'tpope/vim-git'
 Bundle 'tpope/vim-markdown'
 Bundle 'jelera/vim-javascript-syntax'
 Bundle 'vim-ruby/vim-ruby'
+Bundle 'tpope/vim-rails'
+Bundle 'tclem/vim-arduino'
+Bundle 'tpope/vim-bundler'
+Bundle 'Valloric/YouCompleteMe'
 
-" Brief help
 " :BundleList          - list configured bundles
 " :BundleInstall(!)    - install(update) bundles
 " :BundleSearch(!) foo - search(or refresh cache first) for foo
