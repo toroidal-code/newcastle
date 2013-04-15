@@ -9,8 +9,8 @@ urxvt.font: xft:Monospace:pixelsize=10:antialias=true
 
 *termName: xterm-256color
 
-*xterm*faceName: Monospace
-*xterm*faceSize: 12
+*faceName: DejaVu Sans Mono for Powerline
+*faceSize: 12
 ! Theme
 ! Molokai theme
 *background: #101010
