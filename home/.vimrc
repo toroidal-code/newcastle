@@ -11,6 +11,12 @@ call vundle#rc()
 source ~/.plugins.vim " load plugin list
 filetype plugin indent on " required
 
+"""""""
+" YCM "
+"""""""
+
+let g:ycm_confirm_extra_conf = 0
+
 """"""
 " UI "
 """"""
@@ -147,7 +153,8 @@ let mapleader=","
 map ; :
 
 " typing ;; quickly exits insert mode
-imap ;; <Esc>
+nnoremap <C-CR> i
+imap <C-CR> <Esc>
 
 " delete individual lines with ctrl-k
 map  <C-K>    dd
