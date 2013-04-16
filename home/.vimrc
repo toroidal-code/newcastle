@@ -153,8 +153,9 @@ let mapleader=","
 map ; :
 
 " typing ;; quickly exits insert mode
-nnoremap <C-CR> i
-imap <C-CR> <Esc>
+"ino ii 
+map! ii <Esc>
+"cno ` <c-c>
 
 " delete individual lines with ctrl-k
 map  <C-K>    dd
@@ -205,6 +206,8 @@ map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 " inserts the path of the currently edited file into a command
 " command mode: Ctrl+P
 cmap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
+
+nmap <F8> :TagbarToggle<CR>
 
 """""""""""""""""""""
 " Language-Specific "

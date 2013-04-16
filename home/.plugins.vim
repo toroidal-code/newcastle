@@ -29,6 +29,9 @@ Bundle 'tclem/vim-arduino'
 Bundle 'tpope/vim-bundler'
 Bundle 'Valloric/YouCompleteMe'
 
+" ViMacs - AWWW YEAHHHH
+Bundle 'andrep/vimacs'
+
 " :BundleList          - list configured bundles
 " :BundleInstall(!)    - install(update) bundles
 " :BundleSearch(!) foo - search(or refresh cache first) for foo
