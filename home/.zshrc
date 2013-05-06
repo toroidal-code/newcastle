@@ -1,31 +1,35 @@
+export WORKON_HOME=~/.virtualenvs
+source /usr/bin/virtualenvwrapper.sh
+
+export NEWCASTLE="prezto"
+
 if [ $COLORTERM  ] && [ $COLORTERM = "gnome-terminal" ]; then
 	export TERM=xterm-256color
 fi
 
 if [[ -n $SSH_CONNECTION ]]; then
 	NEWCASTLE="simple-zsh"
-else
-	NEWCASTLE="zsh"
 fi
 
 export PATH=~/.bin:$PATH
 #export BYOBU_PREFIX=$(brew --prefix)
 export PATH=/usr/local/Cellar/ruby/1.9.3-p362/bin:~/.bin:$PATH
 
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
-
 if [ $NEWCASTLE = "omz" ]; then
+    # Path to your oh-my-zsh configuration.
+    ZSH=$HOME/.oh-my-zsh
+
+    # Set name of the theme to load.
+    # Look in ~/.oh-my-zsh/themes/
+    # Optionally, if you set this to "random", it'll load a random theme each
+    # time that oh-my-zsh is loaded.
+    ZSH_THEME="robbyrussell"
+
 	# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 	# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 	# Example format: plugins=(rails git textmate ruby lighthouse)
-	plugins=(git)
+	plugins=(git git-flow github git-extras git-hubflow archlinux rvm \ 
+	terminator virtualenvwrapper lol)
 
 	source $ZSH/oh-my-zsh.sh	
 
@@ -34,24 +38,51 @@ elif [ $NEWCASTLE = "prezto" ]; then
 	if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 	  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 	fi
+
+elif [ $NEWCASTLE = "powerline" ]; then
+    #. ~/.powerline/powerline/bindings/zsh/powerline.zsh
+	function _update_ps1()
+	{
+		export PROMPT="$(~/git/powerline-shell/powerline-shell.py --cwd-only --shell zsh $?)"
+		export RPROMPT="$(~/git/powerline-shell/powerline-shell-right.py --shell zsh)"	
+		#export PROMPT="$(~/git/powerline-zsh/powerline-zsh.py --cwd-only $?)"
+		PROMPT="$PROMPT"`$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")`
+	}
+
+	precmd()
+	{
+		_update_ps1
+	}
+elif [ $NEWCASTLE = "zsh" ]; then
+    # Function that displays the hostname if the current session is over SSH
+    function ssh_info() {
+        if [[ -n $SSH_CONNECTION ]]; then
+	        echo "%{$fg[blue]%}$(hostname) "
+        fi
+    }
+    precmd(){ vcs_info }    
+    # Prompt
+    autoload -U colors && colors
+    setopt prompt_subst
+    export PROMPT='$(ssh_info)%{$fg[cyan]%}%~ ${vcs_info_msg_0_}%{$fg[cyan]%}%# %{$reset_color%}'
+
 fi
 
 # Completions
 autoload -U compinit; compinit
-
-#vcs info
-autoload -U vcs_info
-
-zstyle ':vcs_info:*' actionformats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
-zstyle ':vcs_info:*' formats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}]%f '
-zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
-zstyle ':vcs_info:*' enable git cvs svn
 
 # Arrow key menu for completions
 zstyle ':completion:*' menu select
 
 # Case-insensitive (all),partial-word and then substring completion
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+#vcs info
+autoload -U vcs_info # load the plugin
+zstyle ':vcs_info:*' actionformats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
+zstyle ':vcs_info:*' formats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}]%f '
+zstyle ':vcs_info:(sv[nk]|bzr):*' branchformat '%b%F{1}:%F{3}%r'
+zstyle ':vcs_info:*' enable git cvs svn
 
 # Set up aliases
 . ~/.aliases
@@ -73,34 +104,6 @@ setopt inc_append_history
 bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
 
-if [ $NEWCASTLE = "zsh" ]
-	then
-		function _update_ps1()
-		{
-			export PROMPT="$(~/git/powerline-shell/powerline-shell.py --cwd-only --shell zsh $?)"
-			export RPROMPT="$(~/git/powerline-shell/powerline-shell-right.py --shell zsh)"	
-			#export PROMPT="$(~/git/powerline-zsh/powerline-zsh.py --cwd-only $?)"
-			PROMPT="$PROMPT"`$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")`
-		}
-
-		precmd()
-		{
-			_update_ps1
-		}
-elif [ $NEWCASTLE = "simple-zsh" ]; then
-    # Function that displays the hostname if the current session is over SSH
-    function ssh_info() {
-    if [[ -n $SSH_CONNECTION ]]; then
-	echo "%{$fg[blue]%}$(hostname) "
-    fi
-    }
-    precmd(){ vcs_info }    
-    # Prompt
-    autoload -U colors && colors
-    setopt prompt_subst
-    export PROMPT='$(ssh_info)%{$fg[cyan]%}%~ ${vcs_info_msg_0_}%{$fg[cyan]%}%# %{$reset_color%}'
-
-fi
 # Colored man pages (from https://wiki.archlinux.org/index.php/Man_Page#Colored_man_pages)
 man() {
 	env \
