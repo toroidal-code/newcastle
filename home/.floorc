@@ -1,0 +1,6 @@
+# ~/.floorc
+username toroidal-code
+api_key user_wtt6z78724
+secret 8f5rthrylnpvqx50dc8beljcc
+# Vim users: Change "mvim" to your vim command.
+vim_executable mvim
