@@ -25,14 +25,16 @@ fi
 # Editors
 #
 
-export EDITOR='emacs'
-export VISUAL='emacs'
+export EDITOR='emacsclient -c'
+export VISUAL='emacsclient -c'
 export PAGER='less'
-export ALTERNATE_EDITOR=""
+export ALTERNATE_EDITOR="vim"
 
 #
 # Compilers
 #
+#export CC=gcc
+#export CXX=g++
 export CC=clang
 export CXX=clang++
 
