@@ -1,0 +1,27 @@
+[user]
+	name = Katherine Whitlock
+	emacs = toroidalcode@gmail.com
+	email = toroidalcode@gmail.com
+[github]
+	user = toroidal-code
+[push]
+	default = simple
+[color]
+	ui = true
+[credential]
+	helper = osxkeychain
+[alias]
+	lg1 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(bold white)— %an%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative
+	lg2 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(bold white)— %an%C(reset)' --abbrev-commit
+[mergetool]
+	keepBackup = true
+[core]
+	excludesfile = /Users/Katherine/.gitignore
+	autocrlf = input
+[merge "verify"]
+        name = merge and verify driver
+        driver = ./.merge-and-verify-driver %A %O %B
+[merge]
+	tool = meld
+[hub]
+	protocol = https
