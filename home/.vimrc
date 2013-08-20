@@ -58,9 +58,11 @@ set cursorline
 set diffopt+=iwhite
 
 " Powerline
+"set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
 set laststatus=2
 "let g:Powerline_symbols='unicode'
-let g:Powerline_symbols = 'fancy'
+"let g:Powerline_symbols = 'fancy'
 "let g:Powerline_colorscheme='default'
 
 " Allow backspace to remove text not from current session

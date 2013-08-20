@@ -1,16 +1,14 @@
 " New Features
 Bundle 'gmarik/vundle'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'tpope/vim-fugitive'
+"Bundle 'Lokaltog/vim-powerline'
+"Bundle 'Lokaltog/powerline'
 Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/nerdcommenter'
+"Bundle 'scrooloose/nerdcommenter'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'Townk/vim-autoclose'
 Bundle 'tpope/vim-endwise'
 Bundle 'tpope/vim-surround'
-"Bundle 'Valloric/YouCompleteMe'
 Bundle 'sjl/gundo.vim'
-Bundle 'ervandew/supertab'
 Bundle 'scrooloose/syntastic'
 Bundle 'majutsushi/tagbar'
 
@@ -30,7 +28,7 @@ Bundle 'tpope/vim-bundler'
 Bundle 'Valloric/YouCompleteMe'
 
 " ViMacs - AWWW YEAHHHH
-Bundle 'andrep/vimacs'
+"Bundle 'andrep/vimacs'
 
 " :BundleList          - list configured bundles
 " :BundleInstall(!)    - install(update) bundles

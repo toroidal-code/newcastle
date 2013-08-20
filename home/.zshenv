@@ -12,6 +12,8 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 ###Other variables### 
+export ME=toroidal-code
+export HOMEBREW_GITHUB_API_TOKEN=1330632441a71d5c7ae4d85cc7a968dbd913c8c7 
 
 #
 # Browser
@@ -25,8 +27,8 @@ fi
 # Editors
 #
 
-export EDITOR='emacs'
-export VISUAL='emacs'
+export EDITOR='emacsclient -c'
+export VISUAL='emacsclient -c'
 export PAGER='less'
 export ALTERNATE_EDITOR=""
 

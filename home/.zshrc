@@ -1,6 +1,3 @@
-export WORKON_HOME=~/.virtualenvs
-source /usr/bin/virtualenvwrapper.sh
-
 export NEWCASTLE="prezto"
 
 if [ $COLORTERM  ] && [ $COLORTERM = "gnome-terminal" ]; then
@@ -9,6 +6,8 @@ fi
 
 if [[ -n $SSH_CONNECTION ]]; then
 	NEWCASTLE="simple-zsh"
+else
+	NEWCASTLE="prezto"
 fi
 
 export PATH=~/.bin:$PATH
@@ -119,7 +118,7 @@ man() {
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
     [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh ]]
-    export PATH=/usr/local/share/npm/bin:/usr/local/share/python3:$PATH
+    export PATH=/usr/local/share/npm/bin:$PATH
     export BYOBU_PREFIX=$(brew --prefix)
 fi
 
