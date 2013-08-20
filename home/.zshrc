@@ -11,8 +11,6 @@ else
 fi
 
 export PATH=~/.bin:$PATH
-#export BYOBU_PREFIX=$(brew --prefix)
-export PATH=/usr/local/Cellar/ruby/1.9.3-p362/bin:~/.bin:$PATH
 
 if [ $NEWCASTLE = "omz" ]; then
     # Path to your oh-my-zsh configuration.
@@ -120,9 +118,13 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh ]]
     export PATH=/usr/local/share/npm/bin:$PATH
     export BYOBU_PREFIX=$(brew --prefix)
+    export PERL_LOCAL_LIB_ROOT="$PERL_LOCAL_LIB_ROOT:/Users/Katherine/perl5";
+    export PERL_MB_OPT="--install_base /Users/Katherine/perl5";
+    export PERL_MM_OPT="INSTALL_BASE=/Users/Katherine/perl5";
+    export PERL5LIB="/Users/Katherine/perl5/lib/perl5:$PERL5LIB";
+    export PATH="/Users/Katherine/perl5/bin:$PATH";
+    export PATH=/usr/local/Cellar/ruby/1.9.3-p362/bin:~/.bin:$PATH
 fi
-
-#source $HOME/.rvm/scripts/rvm
 
 # Load zmv
 autoload -U zmv
