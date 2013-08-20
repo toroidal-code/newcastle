@@ -1,7 +1,7 @@
 " New Features
 Bundle 'gmarik/vundle'
-"Bundle 'Lokaltog/vim-powerline'
-"Bundle 'Lokaltog/powerline'
+Bundle 'Lokaltog/powerline'
+Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/nerdtree'
 "Bundle 'scrooloose/nerdcommenter'
 Bundle 'tpope/vim-unimpaired'
@@ -26,9 +26,6 @@ Bundle 'tpope/vim-rails'
 Bundle 'tclem/vim-arduino'
 Bundle 'tpope/vim-bundler'
 Bundle 'Valloric/YouCompleteMe'
-
-" ViMacs - AWWW YEAHHHH
-"Bundle 'andrep/vimacs'
 
 " :BundleList          - list configured bundles
 " :BundleInstall(!)    - install(update) bundles

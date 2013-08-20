@@ -5,6 +5,7 @@
 set nocompatible " disable vi compatibility
 filetype off " required
 
+set rtp+=/usr/lib/python2.7/site-packages/powerline/bindings/vim
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 

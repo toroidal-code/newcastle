@@ -13,11 +13,11 @@ xrdb -merge ~/.Xresources        #update X resources database
 # Start a graphical session
 # Examples: awesome, openbox-session, startxfce4, startlxde, gnome-session
 
-export GTK_IM_MODULE = uim
-export QT_IM_MODULE = uim
-uim-xim &
-export XMODIFIERS = @im = uim
-uim-toolbar-gtk3 &
+#export GTK_IM_MODULE = uim
+#export QT_IM_MODULE = uim
+#uim-xim &
+#export XMODIFIERS = @im = uim
+#uim-toolbar-gtk3 &
 
 #xmodmap ~/.Xmodmap
 
@@ -26,4 +26,5 @@ uim-toolbar-gtk3 &
 #session="awesome"
 #exec $session > ~/.cache/wm_out 2> ~/.cache/wm_err
 #exec gnome-session
-#exec awesome
+#feh --bg-fill ~/Pictures/Wallpapers/wallpaper1.jpg
+exec awesome
