@@ -4,9 +4,3 @@
 [submodule "home/.tmux-powerline"]
 	path = home/.tmux-powerline
 	url = git://github.com/erikw/tmux-powerline.git
-[submodule "home/.powerline-shell"]
-	path = home/.powerline-shell
-	url = https://github.com/toroidal-code/powerline-shell.git
-[submodule "home/.powerline"]
-	path = home/.powerline
-	url = https://github.com/Lokaltog/powerline.git
