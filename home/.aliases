@@ -22,7 +22,7 @@ alias free='free -h'
 alias less='less -i'
 alias mkdir='mkdir -pv'
 alias ping='ping -c 5'
-alias vcat='vimcat'
+alias ccat='pygmentize -O style=native -f console256 -g'
 
 # shortcuts
 alias _="sudo"
@@ -165,19 +165,6 @@ alias lm='la | less'
 # ls++
 alias lsp="ls++"
 alias lap="ls++ -A"
-
-if command -v systemctl &>/dev/null; then
-	# systemd
-	alias sc="systemctl"
-	alias power-reboot='sudo systemctl reboot'
-	alias power-off='sudo systemctl poweroff'
-	alias start='sudo systemctl start'
-	alias restart='sudo systemctl restart'
-	alias stop='sudo systemctl stop'
-	alias enable='sudo systemctl enable'
-	alias status='sudo systemctl status'
-	alias disable='sudo systemctl disable'
-fi
 
 if command -v pacman-color &>/dev/null; then
 	# pacman/yaourt
