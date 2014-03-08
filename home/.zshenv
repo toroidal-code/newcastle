@@ -16,6 +16,12 @@ export ME=toroidal-code
 export HOMEBREW_GITHUB_API_TOKEN=1330632441a71d5c7ae4d85cc7a968dbd913c8c7 
 
 #
+# Go
+#
+export GOPATH=~/.go
+export PATH=$PATH:~/.go/bin
+
+#
 # Browser
 #
 
@@ -98,6 +104,7 @@ path=(
   /usr/local/{bin,sbin}
   /usr/{bin,sbin}
   /{bin,sbin}
+  .bin
   $path
 )
 
