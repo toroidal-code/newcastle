@@ -1,19 +1,31 @@
 #!/bin/zsh
 
+# WINE
+export WINEARCH=win32
+
+# npm
+export PATH=/usr/local/share/npm/bin:$PATH
+
 # homebrew
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
 # Load OS scripts/software
 source /etc/profile
 
-# Bins and scripts
-if [[ $EUID -ne 0 ]]; then
-	export PATH=$PATH:~/.homesick/repos/newcastle/scripts
-fi
+export PATH=~/.bin:$PATH
 
 ###Other variables### 
 export ME=toroidal-code
 export HOMEBREW_GITHUB_API_TOKEN=1330632441a71d5c7ae4d85cc7a968dbd913c8c7 
+
+export LD_LIBRARY_PATH=/home/kate/.go/src/github.com/cloudson/gitql/libgit2/install/lib
+
+
+#
+# OCaml
+#
+#export OCAMLPATH=/usr/lib/ocaml:$OCAMLPATH
+export CAML_LD_LIBRARY_PATH=/usr/lib/ocaml:${CAML_LD_LIBRARY_PATH}
 
 #
 # Go
@@ -24,7 +36,6 @@ export PATH=$PATH:~/.go/bin
 #
 # Browser
 #
-
 if [[ "$OSTYPE" == darwin* ]]; then
   export BROWSER='open'
 fi
@@ -32,7 +43,6 @@ fi
 #
 # Editors
 #
-
 export EDITOR='emacsclient -c'
 export VISUAL='emacsclient -c'
 export PAGER='less'

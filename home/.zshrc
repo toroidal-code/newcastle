@@ -119,6 +119,16 @@ alias   cvsstat='cvs status \!* |& grep Status:'
 alias   cvswhat='cvs status \!* |& grep Status: |& grep -v "to-date"'
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+PATH=~/.bin:$PATH
+export CAML_LD_LIBRARY_PATH=/usr/lib/ocaml:${CAML_LD_LIBRARY_PATH}
+
+PATH="/home/kate/perl5/bin${PATH+:}$PATH"; export PATH;
+PERL5LIB="/home/kate/perl5/lib/perl5${PERL5LIB+:}$PERL5LIB"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/kate/perl5${PERL_LOCAL_LIB_ROOT+:}$PERL_LOCAL_LIB_ROOT"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/kate/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/kate/perl5"; export PERL_MM_OPT;
 
 # OPAM configuration
 . /home/kate/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+PATH=/home/kate/.gem/ruby/2.1.0/bin:$PATH

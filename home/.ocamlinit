@@ -1,0 +1,22 @@
+(* Added by OPAM. *)
+let () =
+  try Topdirs.dir_directory (Sys.getenv "OCAML_TOPLEVEL_PATH")
+  with Not_found -> ()
+;;
+
+
+(* Pretend to be in non-interactive mode to hide topfind initialization message *)
+
+(*let interactive = !Sys.interactive;;
+Sys.interactive := false;; *)
+#use "topfind";;
+(*Sys.interactive := interactive;;*)
+
+
+#thread;;
+#require "core";;
+#camlp4o;;
+#require "core.top";;
+#require "core.syntax";;
+
+open Core.Std;;
