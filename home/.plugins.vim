@@ -1,36 +1,34 @@
 " New Features
-Bundle 'gmarik/vundle'
-Bundle 'Lokaltog/powerline'
-Bundle 'tpope/vim-fugitive'
-Bundle 'scrooloose/nerdtree'
-"Bundle 'scrooloose/nerdcommenter'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'Townk/vim-autoclose'
-Bundle 'tpope/vim-endwise'
-Bundle 'tpope/vim-surround'
-Bundle 'sjl/gundo.vim'
-Bundle 'scrooloose/syntastic'
-Bundle 'majutsushi/tagbar'
+Plugin 'tpope/vim-fugitive'
+Plugin 'scrooloose/nerdtree'
+"Plugin 'scrooloose/nerdcommenter'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'Townk/vim-autoclose'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-surround'
+Plugin 'sjl/gundo.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'majutsushi/tagbar'
 
 " Color Schemes
-Bundle 'tomasr/molokai'
-Bundle 'altercation/vim-colors-solarized'
+Plugin 'tomasr/molokai'
+Plugin 'altercation/vim-colors-solarized'
 
 " Language/Syntax Support
-Bundle 'jQuery'
-Bundle 'tpope/vim-git'
-Bundle 'tpope/vim-markdown'
-Bundle 'jelera/vim-javascript-syntax'
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'tpope/vim-rails'
-Bundle 'tclem/vim-arduino'
-Bundle 'tpope/vim-bundler'
-Bundle 'Valloric/YouCompleteMe'
+Plugin 'jQuery'
+Plugin 'tpope/vim-git'
+Plugin 'tpope/vim-markdown'
+Plugin 'jelera/vim-javascript-syntax'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-rails'
+Plugin 'tclem/vim-arduino'
+Plugin 'tpope/vim-Pluginr'
+Plugin 'bling/vim-airline'
 
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install(update) bundles
-" :BundleSearch(!) foo - search(or refresh cache first) for foo
-" :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+" :PluginList          - list configured Plugins
+" :PluginInstall(!)    - install(update) Plugins
+" :PluginSearch(!) foo - search(or refresh cache first) for foo
+" :PluginClean(!)      - confirm(or auto-approve) removal of unused Plugins
 "
 " see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle command are not allowed..
+" NOTE: comments after Plugin command are not allowed..

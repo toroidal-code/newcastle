@@ -112,12 +112,6 @@ autoload -U zmv
 # Load autocorrect things
 #setopt correctall
 
-export PATH=/usr/local/share/npm/bin:$PATH
-
-export NODE_PATH=/Users/kate/.nvm/v0.8.16/lib/node_modules
-
-PATH=$PATH:~/.rvm/bin # Add RVM to PATH for scripting
-
 #begin .cvsrc
 export CVSROOT=www5610@glados.cs.rit.edu:/home/stu1/s6/www5610/cvs
 export CVS_RSH=ssh
@@ -125,3 +119,6 @@ alias   cvsstat='cvs status \!* |& grep Status:'
 alias   cvswhat='cvs status \!* |& grep Status: |& grep -v "to-date"'
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+# OPAM configuration
+. /home/kate/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

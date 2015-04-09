@@ -16,6 +16,8 @@ alias diff='colordiff' #requires colordiff package
 alias colortest="python -c \"print('\n'.join([(' '.join([('\033[38;5;' + str((i + j)) + 'm' + str((i + j)).ljust(5) + '\033[0m') if i + j < 256 else '' for j in range(10)])) for i in range(0, 256, 10)]))\""
 
 # modified commands
+#alias dd='dc3dd'
+alias qc='quasselclient'
 alias df='df -h'
 alias du='du -h'
 alias free='free -h'
@@ -23,6 +25,8 @@ alias less='less -i'
 alias mkdir='mkdir -pv'
 alias ping='ping -c 5'
 alias ccat='pygmentize -O style=native -f console256 -g'
+alias swapgcc='export CC=gcc && export CXX=g++'
+alias swapclang='export CC=clang && export CXX=clang++'
 
 # shortcuts
 alias _="sudo"
@@ -69,7 +73,6 @@ alias source-zsh="source ~/.zshrc"
 if [ $UID -ne 0 ]; then
 	alias sudo='sudo '
 	alias scat='sudo cat'
-	alias svim='sudo vim'
 	alias semacs='sudo emacs'
 	alias root='sudo su'
 	alias reboot='sudo reboot'
@@ -98,38 +101,31 @@ alias scheme='rlwrap --history-no-dupes 1 --histsize 5000 --history-filename $HO
 alias petite='rlwrap --history-no-dupes 1 --histsize 5000 --history-filename $HOME/.rlwrap.d/petite_history petite'
 
 # git
-alias g='git'
-alias gst='git status'
-alias gsts='git status --short'
-alias ga='git add'
-alias gap='git add -p'
-alias gc='git commit -v'
-alias gca='git commit -v -a'
-alias gd='git diff'
-alias gwd='git diff --color-words'
-alias gp='git push'
-alias gl='git pull'
-alias gcl='git clone'
-alias gch='git checkout'
-alias gb='git branch'
-alias glgs='git log --graph --decorate --pretty=oneline --abbrev-commit'
-alias glg='glgs --stat'
-alias gsh='git show'
-alias gshw='git show --color-words'
-alias gri='git rebase -i'
+#alias g='git'
+#alias gst='git status'
+#alias gsts='git status --short'
+#alias ga='git add'
+#alias gap='git add -p'
+#alias gc='git commit -v'
+#alias gca='git commit -v -a'
+#alias gd='git diff'
+#alias gwd='git diff --color-words'
+#alias gp='git push'
+#alias gl='git pull'
+#alias gcl='git clone'
+#alias gch='git checkout'
+#alias gb='git branch'
+#alias glgs='git log --graph --decorate --pretty=oneline --abbrev-commit'
+#alias glg='glgs --stat'
+#alias gsh='git show'
+#alias gshw='git show --color-words'
+#alias gri='git rebase -i'
 
 
 #emacs
 alias e='TERM=xterm-color emacsclient -t'
 alias ex='emacsclient -c'
 alias enw='emacs -Q -nw'
-
-# vim
-alias v='vim -p'
-alias va='vim -p *'
-alias vh='vim -o'
-alias vv='vim -O'
-alias vd='vim -d'
 
 # ruby
 alias rup='rackup'

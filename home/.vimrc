@@ -5,18 +5,17 @@
 set nocompatible " disable vi compatibility
 filetype off " required
 
-set rtp+=/usr/lib/python2.7/site-packages/powerline/bindings/vim
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 source ~/.plugins.vim " load plugin list
+call vundle#end()
 filetype plugin indent on " required
 
-"""""""
-" YCM "
-"""""""
+"""""""""""
+" AirLine "
+"""""""""""
 
-let g:ycm_confirm_extra_conf = 0
+let g:airline_powerline_fonts = 1
 
 """"""
 " UI "

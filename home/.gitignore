@@ -92,10 +92,3 @@ Icon?
 ehthumbs.db
 Thumbs.db
 
-# OCaml things
-*.mllib
-*.mldylib
-setup.data
-_build
-*.native
-*.byte
