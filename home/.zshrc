@@ -16,14 +16,19 @@ if [ $NEWCASTLE = "prezto" ]; then
 	  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 	fi
 
+  if [[ -z ${EMACS+1} ]]; then
+    zstyle ':prezto:module:terminal' auto-title 'no'
+  fi
+
 elif [ $NEWCASTLE = "powerline" ]; then
     #. ~/.powerline/powerline/bindings/zsh/powerline.zsh
 	function _update_ps1()
 	{
-		export PROMPT="$(~/git/powerline-shell/powerline-shell.py --cwd-only --shell zsh $?)"
-		export RPROMPT="$(~/git/powerline-shell/powerline-shell-right.py --shell zsh)"	
+		#export PROMPT="$(~/git/powerline-shell/powerline-shell.py --cwd-only --shell zsh $?)"
+		#export RPROMPT="$(~/git/powerline-shell/powerline-shell-right.py --shell zsh)"	
 		#export PROMPT="$(~/git/powerline-zsh/powerline-zsh.py --cwd-only $?)"
-		PROMPT="$PROMPT"`$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")`
+		#PROMPT="$PROMPT"`$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#D" | tr -d %) "$PWD")`
+		export PROMPT="$(~/git/powerline-shell-cpp/build/powerline-zsh)"
 	}
 
 	precmd()
@@ -45,14 +50,16 @@ elif [ $NEWCASTLE = "zsh" ]; then
 
 fi
 
+
 # Completions
+fpath=(~/.zsh/completions $fpath)
 autoload -U compinit; compinit
 
 # Arrow key menu for completions
-zstyle ':completion:*' menu select
+#zstyle ':completion:*' menu select
 
 # Case-insensitive (all),partial-word and then substring completion
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+#zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 #vcs info
 autoload -U vcs_info # load the plugin
@@ -66,7 +73,7 @@ zstyle ':vcs_info:*' enable git cvs svn
 . ~/.lulz
 
 # Autocomplete command line switches for aliases
-setopt completealiases
+# setopt completealiases
 
 # Set up history
 # number of lines kept in history
@@ -118,17 +125,33 @@ export CVS_RSH=ssh
 alias   cvsstat='cvs status \!* |& grep Status:'
 alias   cvswhat='cvs status \!* |& grep Status: |& grep -v "to-date"'
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-PATH=~/.bin:$PATH
-export CAML_LD_LIBRARY_PATH=/usr/lib/ocaml:${CAML_LD_LIBRARY_PATH}
+eval "$(hub alias -s)"
 
-PATH="/home/kate/perl5/bin${PATH+:}$PATH"; export PATH;
-PERL5LIB="/home/kate/perl5/lib/perl5${PERL5LIB+:}$PERL5LIB"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/kate/perl5${PERL_LOCAL_LIB_ROOT+:}$PERL_LOCAL_LIB_ROOT"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/kate/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/kate/perl5"; export PERL_MM_OPT;
+export NVM_DIR="/home/kate/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # OPAM configuration
 . /home/kate/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
-PATH=/home/kate/.gem/ruby/2.1.0/bin:$PATH
+# Load zsh-syntax-highlighting.
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Load zsh-autosuggestions.
+#source ~/.zsh/zsh-autosuggestions/autosuggestions.zsh
+
+# Enable autosuggestions automatically.
+#zle-line-init() {
+#    zle autosuggest-start
+#}
+#zle -N zle-line-init
+
+eval $(thefuck --alias)
+
+# added by travis gem
+[ -f /home/kate/.travis/travis.sh ] && source /home/kate/.travis/travis.sh
+
+## IF AUTOJUMP DOESN'T WORK ADD 'emulate -L zsh' TO THE TOP OF autojump.zsh
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+

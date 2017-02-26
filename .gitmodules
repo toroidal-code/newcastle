@@ -4,3 +4,9 @@
 [submodule "home/.tmux-powerline"]
 	path = home/.tmux-powerline
 	url = git://github.com/erikw/tmux-powerline.git
+[submodule "home/.zsh/zsh-autosuggestions"]
+	path = home/.zsh/zsh-autosuggestions
+	url = https://github.com/tarruda/zsh-autosuggestions.git
+[submodule "home/.zsh/zsh-syntax-highlighting"]
+	path = home/.zsh/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git

@@ -32,11 +32,10 @@ zstyle ':prezto:load' pmodule \
   'directory' \
   'spectrum' \
   'utility' \
-  'completion' \
-  'git' \
   'syntax-highlighting' \
   'history-substring-search' \
   'prompt'
+#  'completion' \
 
 #
 # Editor
@@ -76,7 +75,7 @@ zstyle ':prezto:module:pacman' frontend 'yaourt'
 # Set the prompt theme to load.
 # Setting it to 'random' loads a random theme.
 # Auto set to 'off' on dumb terminals.
-zstyle ':prezto:module:prompt' theme 'steeef'
+zstyle ':prezto:module:prompt' theme 'sorin'
 
 #
 # Screen
@@ -120,7 +119,9 @@ zstyle ':prezto:module:syntax-highlighting' highlighters \
 #
 
 # Auto set the tab and window titles.
-zstyle ':prezto:module:terminal' auto-title 'yes'
+if ! [[ -n ${EMACS+1} ]]; then
+  zstyle ':prezto:module:terminal' auto-title 'yes'
+fi
 
 #
 # Tmux

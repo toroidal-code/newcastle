@@ -103,7 +103,11 @@ Debundle.debundle!
 
 ### END debundle.rb ###
 
-require 'irbtools'
-#require 'irbtools/more'
-#Irbtools.add_package :more
+if RUBY_ENGINE == 'ruby'
+  require 'irbtools/more'
+else
+  require 'irbtools'
+end
+
+# Irbtools.add_package :more
 Irbtools.start

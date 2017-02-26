@@ -2,14 +2,18 @@
 urxvt.scrollstyle: plain
 urxvt.scrollBar: false
 urxvt.visualBell:  true
+URxvt*perl-ext-common: fullscreen
+URxvt*keysym.F11: perl:fullscreen:switch
+
  
 ! Fonts
-urxvt.font: xft:Monospace:pixelsize=10:antialias=true
-!urxvt.letterSpace: -5
+urxvt.font: xft:Source Code Pro:pixelsize=13:antialias=true
+!urxvt.letterSpace: -2
+
 
 *termName: xterm-256color
 
-*faceName: DejaVu Sans Mono for Powerline
+*faceName: Sourc Code Pro
 *faceSize: 12
 ! Theme
 ! Molokai theme

@@ -125,9 +125,9 @@ set smartindent
 
 syntax enable
 set background=dark
-colorscheme molokai
+"colorscheme molokai
 "colorscheme Tomorrow-Night-Bright
-"colorscheme solarized 
+colorscheme solarized
 
 """"""""
 " GVim "

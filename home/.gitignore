@@ -43,6 +43,7 @@ __pycache__/
 *.*~
 \#*
 .\#*
+.dir-locals.el
 
 # For vim:
 *.swp
@@ -74,6 +75,7 @@ __pycache__/
 *.rar
 *.tar
 *.zip
+*.epub
 
 # Logs and databases #
 ######################

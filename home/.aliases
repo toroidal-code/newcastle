@@ -4,7 +4,7 @@
 # color support
 if [[ "$OSTYPE" == darwin* ]]; then
     export CLICOLOR=1
-else 
+else
     export CLICOLOR=1
     alias dir='dir --color=auto'
     alias vdir='vdir --color=auto'
@@ -27,6 +27,8 @@ alias ping='ping -c 5'
 alias ccat='pygmentize -O style=native -f console256 -g'
 alias swapgcc='export CC=gcc && export CXX=g++'
 alias swapclang='export CC=clang && export CXX=clang++'
+alias composer='hhvm /usr/bin/composer'
+alias off='shutdown -h now'
 
 # shortcuts
 alias _="sudo"
@@ -44,12 +46,13 @@ alias ..='cd ..'
 alias dua='\du -ha'
 alias dus='\du -hs'
 alias to="todo.sh"
+alias m="make"
 
 # new commands
 alias lock='xscreensaver-command -lock'
 alias xmerge='xrdb ~/.Xresources'
 alias pig='ping google.com'
-alias help='cat ~/.help'
+# alias help='cat ~/.help'
 alias du1='\du -h --max-depth=1 | sort -hr'
 alias du2='\du -h --max-depth=2'
 alias du3='\du -h --max-depth=3'
@@ -65,6 +68,10 @@ alias grub-update='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 alias svn-ignore='svn propedit svn:ignore .'
 alias lsmnt="mount | column -t"
 
+alias rmbadsteamlibs='find ~/.steam/root/ \( -name "libgcc_s.so*" -o -name "libstdc++.so*" -o -name "libxcb.so*" \) -print -delete'
+alias rmbadsteamlibslocal='find ~/.local/share/Steam/ \( -name "libgcc_s.so*" -o -name "libstdc++.so*" -o -name "libxcb.so*" \) -print -delete'
+
+
 # zsh utility commands
 alias time-zsh="time zsh -ic exit"
 alias source-zsh="source ~/.zshrc"
@@ -77,6 +84,7 @@ if [ $UID -ne 0 ]; then
 	alias root='sudo su'
 	alias reboot='sudo reboot'
 	alias halt='sudo halt'
+        alias shutdown='sudo shutdown -h now'
 	#alias update='sudo pacman -Su'
 	#alias netcfg='sudo netcfg2'
 fi
@@ -97,35 +105,41 @@ alias rb='ruby'
 alias py='python3'
 alias py2='python2'
 alias sbcl='rlwrap --history-no-dupes 1 --histsize 5000 --history-filename $HOME/.rlwrap.d/sbcl_history sbcl'
+alias shen='rlwrap --history-no-dupes 1 --histsize 5000 --history-filename $HOME/.rlwrap.d/shen_history Shen'
 alias scheme='rlwrap --history-no-dupes 1 --histsize 5000 --history-filename $HOME/.rlwrap.d/scheme_history scheme'
 alias petite='rlwrap --history-no-dupes 1 --histsize 5000 --history-filename $HOME/.rlwrap.d/petite_history petite'
+alias sml='rlwrap --history-no-dupes 1 --histsize 5000 --history-filename $HOME/.rlwrap.d/sml_history sml'
 
 # git
 #alias g='git'
-#alias gst='git status'
-#alias gsts='git status --short'
+alias gst='git status'
+alias gsts='git status --short'
 #alias ga='git add'
 #alias gap='git add -p'
 #alias gc='git commit -v'
 #alias gca='git commit -v -a'
-#alias gd='git diff'
-#alias gwd='git diff --color-words'
+alias gd='git diff'
+alias gwd='git diff --color-words'
 #alias gp='git push'
-#alias gl='git pull'
+alias gl='git pull'
 #alias gcl='git clone'
-#alias gch='git checkout'
-#alias gb='git branch'
-#alias glgs='git log --graph --decorate --pretty=oneline --abbrev-commit'
-#alias glg='glgs --stat'
+alias gch='git checkout'
+alias gb='git branch'
+alias gcb='git checkout -b'
+alias glgs='git log --graph --decorate --pretty=oneline --abbrev-commit'
+alias glg='glgs --stat'
 #alias gsh='git show'
 #alias gshw='git show --color-words'
 #alias gri='git rebase -i'
 
 
 #emacs
-alias e='TERM=xterm-color emacsclient -t'
+alias e='emacsclient -nw'
 alias ex='emacsclient -c'
 alias enw='emacs -Q -nw'
+ev() {
+  emacs -Q -nw "$1" --eval '(setq buffer-read-only t)'
+}
 
 # ruby
 alias rup='rackup'
@@ -146,7 +160,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
     export CLICOLOR=1
     alias ls='ls -GpF'
     alias readlink='greadlink'
-else 
+else
     alias ls='ls -hGp --color=auto'
 fi
 alias la='ls -A'
@@ -171,7 +185,7 @@ if command -v pacman-color &>/dev/null; then
 	alias pa='yaourt'
 	alias pain='pa -S'
 	alias paup='pa -Syu'
-else 
+else
 	# pacman/yaourt
 	alias pf='yaourt -Ss'
 	alias p='sudo pacman'
